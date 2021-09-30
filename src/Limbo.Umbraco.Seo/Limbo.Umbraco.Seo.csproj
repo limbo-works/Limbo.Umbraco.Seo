@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <Version>1.0.0-alpha001</Version>
+    <Authors>Anders Bjerner</Authors>
+    <Company>Limbo</Company>
+    <Description>SEO package for Umbraco 8.</Description>
+    <Copyright>Copyright © 2021</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="UmbracoCms.Core" Version="8.1.0" />
+    <PackageReference Include="UmbracoCms.Web" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Plugins\Limbo.Seo\Styles\Styles.css">
+      <DependentUpon>Styles.less</DependentUpon>
+    </Content>
+    <Content Include="App_Plugins\Limbo.Seo\Styles\Styles.less" />
+  </ItemGroup>
+
+</Project>

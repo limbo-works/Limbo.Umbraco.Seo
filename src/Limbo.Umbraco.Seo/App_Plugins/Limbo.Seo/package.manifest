@@ -1,0 +1,20 @@
+﻿﻿{
+  "propertyEditors": [
+    {
+      "alias": "Limbo.Seo.Preview",
+      "name": "Limbo Seo Preview",
+  	  "icon": "icon-chart",
+      "editor": {
+        "view": "~/App_Plugins/Limbo.Seo/Views/Preview.html",
+        "hideLabel": false,
+        "valueType": "JSON"
+      }
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/Limbo.Seo/Scripts/Controllers/Preview.js"
+  ],
+  "css": [
+    "~/App_Plugins/Limbo.Seo/Styles/Styles.min.css"
+  ]
+}
