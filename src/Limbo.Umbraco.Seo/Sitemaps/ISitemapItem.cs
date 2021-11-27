@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using Limbo.Umbraco.Seo.Models.Sitemaps;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
     
@@ -9,9 +10,9 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         DateTime LastModified { get; }
 
-        string ChangeFrequency { get; }
+        SitemapChangeFrequency ChangeFrequency { get; }
 
-        string PagePriority { get; }
+        float? PagePriority { get; }
 
         XElement ToXml();
 

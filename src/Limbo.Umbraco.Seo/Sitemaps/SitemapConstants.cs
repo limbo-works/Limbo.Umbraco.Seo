@@ -10,7 +10,9 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         public static class Properties {
 
-            public const string ChangeFrequency = "sitemapPageUpdateFrequency";
+            public const string HideFromSitemap = "hideFromSitemap";
+
+            public const string ChangeFrequency = "sitemapPageChangeFrequency";
 
             public const string Priority = "sitemapPagePriority";
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Limbo.Umbraco.Seo.Extensions;
+using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
@@ -67,7 +69,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             if (node.ContentType.Alias == "formRender") return true;
 
             if (node.TemplateId <= 0) return true;
-            if (node.Value<bool>("hideFromSitemap")) return true;
+            if (node.Value<bool>(SitemapConstants.Properties.HideFromSitemap)) return true;
             
             return false;
 
@@ -117,12 +119,20 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             absoluteUrl = node.Url(mode: UrlMode.Absolute);
             
 
-            return new SitemapItem {
+            SitemapItem item = new SitemapItem {
                 Url = absoluteUrl,
                 LastModified = node.UpdateDate, // TODO: Should this be UTC?
-                ChangeFrequency = node.Value<string>("sitemapPageUpdateFreq"),
-                PagePriority = node.Value<string>("sitemapPagePriority")
             };
+
+            if (node.TryGetSitemapChangeFrequency(out SitemapChangeFrequency frequency)) {
+                item.ChangeFrequency = frequency;
+            }
+
+            if (node.TryGetSitemapPriority(out float priority)) {
+                item.PagePriority = priority;
+            }
+
+            return item;
 
         }
 

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Xml.Linq;
+using Limbo.Umbraco.Seo.Models.Sitemaps;
+using Skybrud.Essentials.Strings.Extensions;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
@@ -9,9 +12,9 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         public DateTime LastModified { get; set; }
 
-        public string ChangeFrequency { get; set; }
+        public SitemapChangeFrequency ChangeFrequency { get; set; }
 
-        public string PagePriority { get; set; }
+        public float? PagePriority { get; set; }
 
         public XElement ToXml() {
 
@@ -21,8 +24,8 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
                 new XElement(SitemapConstants.XNamespace + "lastmod", LastModified.ToString("yyyy-MM-dd"))
             );
             
-            if (!string.IsNullOrWhiteSpace(ChangeFrequency)) xml.Add(new XElement(SitemapConstants.Properties.ChangeFrequency, ChangeFrequency));
-            if (!string.IsNullOrWhiteSpace(PagePriority)) xml.Add(new XElement(SitemapConstants.Properties.Priority, PagePriority));
+            if (ChangeFrequency > 0) xml.Add(new XElement(SitemapConstants.Properties.ChangeFrequency, ChangeFrequency.ToLower()));
+            if (PagePriority != null) xml.Add(new XElement(SitemapConstants.Properties.Priority, PagePriority.Value.ToString("N1", CultureInfo.InvariantCulture)));
 
             return xml;
 
