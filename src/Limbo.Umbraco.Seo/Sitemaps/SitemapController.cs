@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
-using System.Web.Http;
-using Umbraco.Web.WebApi;
+using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Web.Common.Controllers;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
    
@@ -14,7 +14,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         [HttpGet]
         public HttpResponseMessage XmlSitemap() {
-            return _sitemapHelper.BuildSitemap().AsResponseMessage();
+            return _sitemapHelper.BuildSitemap(HttpContext).AsResponseMessage();
         }
 
     }

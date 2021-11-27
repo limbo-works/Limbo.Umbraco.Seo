@@ -1,8 +1,8 @@
 ﻿using System;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Skybrud.Essentials.Enums;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.PropertyEditors;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
     

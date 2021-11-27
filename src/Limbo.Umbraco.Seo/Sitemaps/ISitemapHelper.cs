@@ -1,10 +1,10 @@
-﻿using System.Web;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
     
     public interface ISitemapHelper {
         
-        ISitemapResult BuildSitemap(HttpContextBase context);
+        ISitemapResult BuildSitemap(HttpContext context);
 
     }
 

@@ -5,29 +5,31 @@ using System.Net;
 using System.Web;
 using Limbo.Umbraco.Seo.Extensions;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
-using Umbraco.Core.Logging;
-using Umbraco.Core.Models;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.Services;
-using Umbraco.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core.Web;
+using Umbraco.Extensions;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
     
     public class SitemapHelper : ISitemapHelper {
         
-        private readonly ILogger _logger;
+        private readonly ILogger<SitemapHelper> _logger;
         private readonly IDomainService _domainService;
         private readonly IUmbracoContextAccessor _umbracoContextAccessor;
 
-        public SitemapHelper(ILogger logger, IDomainService domainService, IUmbracoContextAccessor umbracoContextAccessor) {
+        public SitemapHelper(ILogger<SitemapHelper> logger, IDomainService domainService, IUmbracoContextAccessor umbracoContextAccessor) {
             _logger = logger;
             _domainService = domainService;
             _umbracoContextAccessor = umbracoContextAccessor;
         }
 
-        public virtual ISitemapResult BuildSitemap(HttpContextBase context) {
+        public virtual ISitemapResult BuildSitemap(HttpContext context) {
 
-            Uri url = context.Request.Url;
+            Uri url = GetUri(context.Request);
 
             IDomain domain = _domainService
                 .GetAll(false)
@@ -40,7 +42,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
-        protected virtual ISitemapResult BuildSitemap(HttpContextBase context, IDomain domain) {
+        protected virtual ISitemapResult BuildSitemap(HttpContext context, IDomain domain) {
 
             try {
 
@@ -49,7 +51,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
                 List<ISitemapItem> items = new List<ISitemapItem>();
 
-                IPublishedContent root = _umbracoContextAccessor.UmbracoContext.Content.GetById(domain.RootContentId.Value);
+                IPublishedContent root = _umbracoContextAccessor.GetRequiredUmbracoContext().Content.GetById(domain.RootContentId.Value);
 
                 BuildSitemap(context, items, root);
 
@@ -84,7 +86,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
-        protected virtual void BuildSitemap(HttpContextBase context, List<ISitemapItem> items, IPublishedContent node) {
+        protected virtual void BuildSitemap(HttpContext context, List<ISitemapItem> items, IPublishedContent node) {
 
             if (!IgnoreNode(node)) {
 
@@ -102,16 +104,16 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             } catch (Exception ex) {
 
 #if DEBUG
-                _logger.Error<SitemapHelper>(ex, $"Failed generating sitemap for node with ID {node.Id}");
+                _logger.LogError(ex, $"Failed generating sitemap for node with ID {node.Id}");
 #endif
 
             }
 
         }
 
-        protected virtual SitemapItem CreateItem(HttpContextBase context, IPublishedContent node) {
+        protected virtual SitemapItem CreateItem(HttpContext context, IPublishedContent node) {
 
-            Uri uri = context.Request.Url;
+            Uri uri = GetUri(context.Request);
             
             string absoluteUrl = uri.Scheme + Uri.SchemeDelimiter + uri.Host + node.Url();
 
@@ -134,6 +136,17 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
             return item;
 
+        }
+
+        private static Uri GetUri(HttpRequest request) {
+            // TODO: Can we move this to one of our other packages?
+            return new UriBuilder {
+                Scheme = request.Scheme,
+                Host = request.Host.Host,
+                Port = request.Host.Port ?? (request.Scheme == "https" ? 80 : 443),
+                Path = request.Path,
+                Query = request.QueryString.ToUriComponent()
+            }.Uri;
         }
 
     }

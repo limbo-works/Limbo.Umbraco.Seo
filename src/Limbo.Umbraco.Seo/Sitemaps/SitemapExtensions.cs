@@ -2,21 +2,12 @@
 using System.IO;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
     
     public static class SitemapExtensions {
-
-        public static ISitemapResult BuildSitemap(this ISitemapHelper helper) {
-            return helper.BuildSitemap(new HttpContextWrapper(HttpContext.Current));
-        }
-
-        public static ISitemapResult BuildSitemap(this ISitemapHelper helper, HttpContext context) {
-            return helper.BuildSitemap(new HttpContextWrapper(context ?? HttpContext.Current));
-        }
 
         public static HttpResponseMessage AsResponseMessage(this ISitemapResult result) {
             
@@ -49,19 +40,12 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
-        public static void WriteTo(this ISitemapResult result, HttpResponse response) {
-            response.Clear();
-            response.ContentType = "application/xml";
-            result.WriteTo(response.OutputStream);
-            response.End();
-        }
-
-        public static void WriteTo(this ISitemapResult result, HttpResponseBase response) {
-            response.Clear();
-            response.ContentType = "application/xml";
-            result.WriteTo(response.OutputStream);
-            response.End();
-        }
+        //public static void WriteTo(this ISitemapResult result, HttpResponse response) {
+        //    response.Clear();
+        //    response.ContentType = "application/xml";
+        //    result.WriteTo(response.OutputStream);
+        //    response.End();
+        //}
 
     }
 

@@ -1,7 +1,7 @@
 ﻿using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Limbo.Umbraco.Seo.Sitemaps;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Extensions;
 
 namespace Limbo.Umbraco.Seo.Extensions {
     
