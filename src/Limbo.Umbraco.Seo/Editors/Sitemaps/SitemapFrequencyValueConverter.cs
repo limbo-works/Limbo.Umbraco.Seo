@@ -5,9 +5,9 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
-    
+
     public class SitemapFrequencyValueConverter : PropertyValueConverterBase {
-        
+
         public override bool IsConverter(IPublishedPropertyType propertyType) {
             return propertyType.EditorAlias == SitemapFrequencyEditor.EditorAlias;
         }

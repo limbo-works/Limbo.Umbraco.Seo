@@ -4,7 +4,7 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 
 namespace Limbo.Umbraco.Seo.Extensions {
-    
+
     public static class PublishedContentExtensions {
 
         public static SitemapChangeFrequency GetSitemapChangeFrequency(this IPublishedContent content) {
@@ -41,7 +41,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
 
                 default:
                     return false;
- 
+
             }
 
         }

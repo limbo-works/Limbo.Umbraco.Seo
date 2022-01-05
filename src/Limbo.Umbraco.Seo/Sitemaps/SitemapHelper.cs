@@ -12,9 +12,9 @@ using Umbraco.Core.Services;
 using Umbraco.Web;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
-    
+
     public class SitemapHelper : ISitemapHelper {
-        
+
         private readonly ILogger _logger;
         private readonly IDomainService _domainService;
         private readonly IUmbracoContextAccessor _umbracoContextAccessor;
@@ -64,22 +64,22 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         }
 
         protected virtual bool IgnoreNode(IPublishedContent node) {
-            
+
             // Skip formRender
             if (node.ContentType.Alias == "formRender") return true;
 
             if (node.TemplateId <= 0) return true;
             if (node.Value<bool>(SitemapConstants.Properties.HideFromSitemap)) return true;
-            
+
             return false;
 
         }
 
         protected virtual bool IgnoreChildren(IPublishedContent node) {
-            
+
             // Skip formRender
             if (node.ContentType.Alias == "formRender") return true;
-            
+
             return false;
 
         }
@@ -112,12 +112,12 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         protected virtual SitemapItem CreateItem(HttpContextBase context, IPublishedContent node) {
 
             Uri uri = context.Request.Url;
-            
+
             string absoluteUrl = uri.Scheme + Uri.SchemeDelimiter + uri.Host + node.Url();
 
             // TODO: Isn't this mroe correct?
             absoluteUrl = node.Url(mode: UrlMode.Absolute);
-            
+
 
             SitemapItem item = new SitemapItem {
                 Url = absoluteUrl,

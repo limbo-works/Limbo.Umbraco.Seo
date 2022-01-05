@@ -1,0 +1,9 @@
+﻿[
+  {
+    "outputFile": "App_Plugins/Limbo.Umbraco.Seo/Styles/Styles.css",
+    "inputFile": "App_Plugins/Limbo.Umbraco.Seo/Styles/Styles.less",
+    "minify": {
+      "enabled": false
+    }
+  }
+]
