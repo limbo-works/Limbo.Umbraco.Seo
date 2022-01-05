@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
     <TargetFramework>net5.0</TargetFramework>
+    <ContentTargetFolders>content</ContentTargetFolders>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -9,21 +11,51 @@
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Description>SEO package for Umbraco 9.</Description>
-    <Copyright>Copyright © 2021</Copyright>
+    <Copyright>Copyright © 2022</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Information for the NuGet package -->
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</PackageProjectUrl>
+    <PackageIcon>Limbo.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.33" />
+    <!-- Include NuGet dependencies -->
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.34" />
     <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Plugins\Limbo.Seo\Styles\Styles.css">
+    <!-- Include backoffice assets -->
+    <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.html" />
+    <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.js" />
+    <Content Include="App_Plugins\Limbo.Umbraco.Seo\Lang\*.xml" />
+    <Content Include="App_Plugins\Limbo.Umbraco.Seo\package.manifest" />
+    <None Include="App_Plugins\Limbo.Umbraco.Seo\Styles\Styles.less" />
+    <Content Include="App_Plugins\Limbo.Umbraco.Seo\Styles\Styles.css">
       <DependentUpon>Styles.less</DependentUpon>
     </Content>
-    <Content Include="App_Plugins\Limbo.Seo\Styles\Styles.less" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include the targets file -->
+    <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include package icon for NuGet -->
+    <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Generate XML documentation -->
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
 
 </Project>

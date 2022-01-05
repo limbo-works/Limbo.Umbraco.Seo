@@ -1,0 +1,26 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <LimboUmbracoSeoContentFilesPath>$(MSBuildThisFileDirectory)..\content\App_Plugins\Limbo.Umbraco.Seo\**\*.*</LimboUmbracoSeoContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyLimboUmbracoSeoAssets" BeforeTargets="Build">
+    <ItemGroup>
+      <LimboUmbracoSeoContentFiles Include="$(LimboUmbracoSeoContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying Limbo.Umbraco.Seo files: $(LimboUmbracoSeoContentFilesPath) - #@(LimboUmbracoSeoContentFiles->Count()) files"  Importance="high" />
+    <Copy
+      SourceFiles="@(LimboUmbracoSeoContentFiles)"
+      DestinationFiles="@(LimboUmbracoSeoContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.Seo\%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearLimboUmbracoSeoAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <LimboUmbracoSeoDir Include="$(MSBuildProjectDirectory)\App_Plugins\Limbo.Umbraco.Seo\" />
+    </ItemGroup>
+    <Message Text="Clear old Limbo.Umbraco.Seo files"  Importance="high" />
+    <RemoveDir Directories="@(LimboUmbracoSeoDir)"  />
+  </Target>
+
+</Project>

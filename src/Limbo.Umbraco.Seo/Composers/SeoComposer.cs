@@ -4,7 +4,7 @@ using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
 
 namespace Limbo.Umbraco.Seo.Composers {
-    
+
     public class SeoComposer : IComposer {
 
         public void Compose(IUmbracoBuilder builder) {

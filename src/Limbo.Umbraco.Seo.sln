@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Limbo.Umbraco.Seo", "Limbo.Umbraco.Seo\Limbo.Umbraco.Seo.csproj", "{80ABA69B-3537-4464-B051-4A0D00CBF705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Limbo.Umbraco.Seo", "Limbo.Umbraco.Seo\Limbo.Umbraco.Seo.csproj", "{80ABA69B-3537-4464-B051-4A0D00CBF705}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3417FA11-EA83-4636-BA5C-EE425CE565AD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@ using System.Xml.Linq;
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
     public class SitemapResult : ISitemapResult {
-        
+
         public Exception Exception { get; }
 
         public List<ISitemapItem> Items { get; }
@@ -24,15 +24,15 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             XElement root;
 
             if (Exception != null || Items == null) {
-                
+
                 // Initialize a new <e> element as root
                 root = new XElement(SitemapConstants.XNamespace + "e", "Error");
 
             } else {
-                
+
                 // Initialize a new <urlset> element as root
                 root = new XElement(SitemapConstants.XNamespace + "urlset");
-            
+
                 // Add an <url> element for each item
                 foreach (ISitemapItem item in Items) root.Add(item.ToXml());
 
