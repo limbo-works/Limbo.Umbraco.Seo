@@ -2,7 +2,10 @@
 
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
 
-    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Priority", EditorView, ValueType = ValueTypes.Decimal, Group = "Limbo", Icon = "icon-checkbox color-limbo")]
+    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Priority", EditorView,
+        ValueType = ValueTypes.Decimal,
+        Group = "Limbo",
+        Icon = "icon-caps-lock color-limbo")]
     public class SitemapPriorityEditor : DataEditor {
 
         #region Constants

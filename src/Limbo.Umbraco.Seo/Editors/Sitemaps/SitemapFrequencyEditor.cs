@@ -2,7 +2,10 @@
 
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
     
-    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Change Frequency", EditorView, ValueType = ValueTypes.String, Group = "Limbo", Icon = "icon-checkbox color-limbo")]
+    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Change Frequency", EditorView,
+        ValueType = ValueTypes.String,
+        Group = "Limbo",
+        Icon = "icon-timer color-limbo")]
     public class SitemapFrequencyEditor : DataEditor {
 
         #region Constants
