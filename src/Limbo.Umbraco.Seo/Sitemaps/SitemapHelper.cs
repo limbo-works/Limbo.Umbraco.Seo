@@ -11,6 +11,8 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 
+#pragma warning disable 168
+
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
     public class SitemapHelper : ISitemapHelper {
