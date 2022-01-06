@@ -1,5 +1,31 @@
 # Limbo SEO
 
+
+**Limbo SEO** is a package for helping improving the SEO experience in the Umbraco backoffice. While still under development, the package currently includes:
+
+ 
+
+**Property Editors**  
+
+- SEO Preview - eg. like the page will be shown on Google
+- Sitemap Frequency Picker - let's editors set the sitemap update frequency of a given page
+- Sitemap Page Priority - let's editor specify the page priority of a given page
+
+**Other**  
+
+- Logic for easily building sitemaps - extendable via the `ISitemapHelper` interface and the `SitemapHelper` class
+- More to come 😎
+
+
+
+
+
+
+
+
+
+
+
 ## Installation
 
 The Umbraco 9 version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
