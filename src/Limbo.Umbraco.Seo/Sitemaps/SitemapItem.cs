@@ -24,8 +24,8 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
                 new XElement(SitemapConstants.XNamespace + "lastmod", LastModified.ToString("yyyy-MM-dd"))
             );
 
-            if (ChangeFrequency > 0) xml.Add(new XElement(SitemapConstants.Properties.ChangeFrequency, ChangeFrequency.ToLower()));
-            if (PagePriority != null) xml.Add(new XElement(SitemapConstants.Properties.Priority, PagePriority.Value.ToString("N1", CultureInfo.InvariantCulture)));
+            if (ChangeFrequency > 0) xml.Add(new XElement(SitemapConstants.XNamespace + SitemapConstants.Properties.ChangeFrequency, ChangeFrequency.ToLower()));
+            if (PagePriority != null) xml.Add(new XElement(SitemapConstants.XNamespace + SitemapConstants.Properties.Priority, PagePriority.Value.ToString("N1", CultureInfo.InvariantCulture)));
 
             return xml;
 
