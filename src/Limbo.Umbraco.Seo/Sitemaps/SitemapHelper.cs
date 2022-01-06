@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using Limbo.Umbraco.Seo.Extensions;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +11,8 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
+
+#pragma warning disable 168
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
