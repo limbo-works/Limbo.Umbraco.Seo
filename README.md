@@ -9,7 +9,7 @@
 
 - SEO Preview - eg. like the page will be shown on Google
 - Sitemap Frequency Picker - let's editors set the sitemap update frequency of a given page
-- Sitemap Page Priority - let's editor specify the page priority of a given page
+- Sitemap Page Priority - let's editors specify the page priority of a given page
 
 **Other**  
 
