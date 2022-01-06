@@ -10,12 +10,14 @@
     <Version>1.0.0-alpha001</Version>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
+    <Title>Limbo Seo</Title>
     <Description>SEO package for Umbraco 8.</Description>
     <Copyright>Copyright © 2022</Copyright>
   </PropertyGroup>
   
   <PropertyGroup>
     <!-- Information for the NuGet package -->
+    <PackageTags>Skybrud Limbo Umbraco Seo</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
