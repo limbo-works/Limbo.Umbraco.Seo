@@ -7,9 +7,10 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <Version>2.0.0-alpha001</Version>
+    <Version>2.0.0-alpha001010</Version>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
+    <Title>Limbo SEO</Title>
     <Description>SEO package for Umbraco 9.</Description>
     <Copyright>Copyright © 2022</Copyright>
   </PropertyGroup>

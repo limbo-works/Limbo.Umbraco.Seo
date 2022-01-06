@@ -1,8 +1,8 @@
 ﻿using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
-
-    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Frequency", EditorView, ValueType = ValueTypes.String, Group = "Limbo", Icon = "icon-checkbox color-limbo")]
+    
+    [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Change Frequency", EditorView, ValueType = ValueTypes.String, Group = "Limbo", Icon = "icon-checkbox color-limbo")]
     public class SitemapFrequencyEditor : DataEditor {
 
         #region Constants
@@ -10,9 +10,9 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         /// <summary>
         /// Gets the alias of the editor.
         /// </summary>
-        public const string EditorAlias = "Limbo.Seo.PageFrequency";
+        public const string EditorAlias = "Limbo.Umbraco.Seo.SitemapChangeFrequency";
 
-        public const string EditorView = "/App_Plugins/Limbo.Seo/Views/Editors/PageFrequency.html";
+        public const string EditorView = "/App_Plugins/Limbo.Umbraco.Seo/Views/SitemapChangeFrequency.html";
 
         #endregion
 

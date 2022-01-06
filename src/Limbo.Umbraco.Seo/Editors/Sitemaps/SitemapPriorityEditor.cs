@@ -10,9 +10,9 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         /// <summary>
         /// Gets the alias of the editor.
         /// </summary>
-        public const string EditorAlias = "Limbo.Seo.PagePriority";
+        public const string EditorAlias = "Limbo.Umbraco.Seo.SitemapPriority";
 
-        public const string EditorView = "/App_Plugins/Limbo.Seo/Views/Editors/PagePriority.html";
+        public const string EditorView = "/App_Plugins/Limbo.Umbraco.Seo/Views/SitemapPriority.html";
 
         #endregion
 

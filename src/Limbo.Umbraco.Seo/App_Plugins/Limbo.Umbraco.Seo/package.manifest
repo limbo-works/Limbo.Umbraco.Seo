@@ -1,20 +1,22 @@
 ﻿﻿{
   "propertyEditors": [
     {
-      "alias": "Limbo.Seo.Preview",
-      "name": "Limbo Seo Preview",
-  	  "icon": "icon-chart",
+      "alias": "Limbo.Umbraco.Seo.Preview",
+      "name": "Limbo SEO Preview",
+      "icon": "icon-chart",
       "editor": {
-        "view": "~/App_Plugins/Limbo.Umbraco.Seo/Views/Preview.html",
+        "view": "/App_Plugins/Limbo.Umbraco.Seo/Views/Preview.html",
         "hideLabel": false,
         "valueType": "JSON"
       }
     }
   ],
   "javascript": [
-    "~/App_Plugins/Limbo.Umbraco.Seo/Scripts/Controllers/Preview.js"
+    "/App_Plugins/Limbo.Umbraco.Seo/Scripts/Controllers/Preview.js",
+    "/App_Plugins/Limbo.Umbraco.Seo/Scripts/Controllers/SitemapChangeFrequency.js",
+    "/App_Plugins/Limbo.Umbraco.Seo/Scripts/Controllers/SitemapPriority.js"
   ],
   "css": [
-    "~/App_Plugins/Limbo.Umbraco.Seo/Styles/Styles.css"
+    "/App_Plugins/Limbo.Umbraco.Seo/Styles/Styles.css"
   ]
 }

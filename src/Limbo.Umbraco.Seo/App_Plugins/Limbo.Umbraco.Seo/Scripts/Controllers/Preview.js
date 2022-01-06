@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Limbo.Seo.Preview", function ($scope, editorState) {
+﻿angular.module("umbraco").controller("Limbo.Umbraco.Seo.Preview", function ($scope, editorState) {
 
     $scope.title = "";
     $scope.description = "";
@@ -22,6 +22,8 @@
     let seoMetaDescriptionVariant = 0;
     let seoMetaDescriptionTab = -1;
     let seoMetaDescriptionProperty = -1;
+
+    console.log($scope.editorState.current);
 
     const variant = $scope.editorState.current.variants[0];
     variant.tabs.forEach(function (tab, tabIndex) {
