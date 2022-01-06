@@ -1,0 +1,3 @@
+﻿<div class="limbo-seo-button-list" ng-controller="Limbo.Umbraco.Seo.SitemapPriority as vm">
+    <button type="button" ng-click="vm.select(priority)" ng-repeat="priority in vm.priorities" ng-class="{'--active': priority.selected}">{{priority.value}}</button>
+</div>

@@ -213,3 +213,35 @@
   margin: 10px 2% 10px 2%;
   max-width: 512px;
 }
+.limbo-seo-button-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.limbo-seo-button-list > button {
+  appearance: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  border: 0;
+  font-weight: bold;
+  color: #1A2650;
+  line-height: 1;
+  background-color: rgba(216, 215, 217, 0.5);
+  font-size: 13px;
+  margin: 0 7px 7px 0;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+.limbo-seo-button-list > button:hover {
+  background-color: rgba(216, 215, 217, 0.3);
+  color: #2152a3;
+}
+.limbo-seo-button-list > button.--active {
+  background-color: #F5C1BC;
+  color: #1A2650;
+}
+.limbo-seo-button-list > button + button {
+  margin-left: 5px;
+}

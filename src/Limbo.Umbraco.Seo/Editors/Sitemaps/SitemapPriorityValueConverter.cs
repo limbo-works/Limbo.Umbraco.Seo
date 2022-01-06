@@ -21,9 +21,12 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
 
             switch (source) {
-
+                
                 case float _:
                     return source;
+                
+                case double d:
+                    return (float) d;
 
                 case string str:
                     return float.TryParse(str, out float result) ? result : default(float?);

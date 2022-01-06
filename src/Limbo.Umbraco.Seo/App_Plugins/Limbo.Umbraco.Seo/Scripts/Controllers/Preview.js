@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Limbo.Seo.Preview", function ($scope, editorState) {
+﻿angular.module("umbraco").controller("Limbo.Umbraco.Seo.Preview", function ($scope, editorState) {
 
     $scope.title = "";
     $scope.description = "";
