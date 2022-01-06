@@ -4,6 +4,10 @@
 
 *Still under development, so no NuGet package yet 😢*
 
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/3634580/148427849-7ac515ad-de78-49bc-8312-6782fb9fdf55.png)
+
 ## Usage
 
 ### Sitemap
