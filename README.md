@@ -1,8 +1,25 @@
-# Limbo.Umbraco.Seo
+# Limbo SEO
 
 ## Installation
 
-*Still under development, so no NuGet package yet 😢*
+The Umbraco 9 version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
+
+```
+dotnet add package Limbo.Umbraco.Seo --version 2.0.0-alpha001
+```
+
+or the older NuGet Package Manager:
+
+```
+Install-Package Limbo.Umbraco.Seo -Version 2.0.0-alpha001
+```
+
+**Umbraco 8**  
+For the Umbraco 8 version of this package, see the [**v1/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) branch instead.
+
+## Screenshots
+
+![image](https://user-images.githubusercontent.com/3634580/148427849-7ac515ad-de78-49bc-8312-6782fb9fdf55.png)
 
 ## Usage
 
