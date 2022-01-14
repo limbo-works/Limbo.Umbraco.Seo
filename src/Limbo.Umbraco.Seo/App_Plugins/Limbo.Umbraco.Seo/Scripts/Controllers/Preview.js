@@ -23,7 +23,7 @@
     let seoMetaDescriptionTab = -1;
     let seoMetaDescriptionProperty = -1;
 
-    console.log($scope.editorState.current);
+    let serverVariables = Umbraco.Sys.ServerVariables.LimboUmbracoSEO;
 
     const variant = $scope.editorState.current.variants[0];
     variant.tabs.forEach(function (tab, tabIndex) {
@@ -31,20 +31,19 @@
         tab.properties.forEach(function (property, propertyIndex) {
 
             switch (property.alias) {
-                case "title":
-                case "pageTitle":
+                case serverVariables.titlePropertyAlias:
                     titleTab = tabIndex;
                     titleProperty = propertyIndex;
                     break;
-                case "seoTitle":
+                case serverVariables.seoTitlePropertyAlias:
                     seoTitleTab = tabIndex;
                     seoTitleProperty = propertyIndex;
                     break;
-                case "teaser":
+                case serverVariables.teaserPropertyAlias:
                     teaserTab = tabIndex;
                     teaserProperty = propertyIndex;
                     break;
-                case "seoMetaDescription":
+                case serverVariables.seoMetaDescriptionPropertyAlias:
                     seoMetaDescriptionTab = tabIndex;
                     seoMetaDescriptionProperty = propertyIndex;
                     break;
