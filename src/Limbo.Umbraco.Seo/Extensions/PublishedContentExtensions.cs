@@ -15,7 +15,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// </summary>
         /// <param name="content">The content node.</param>
         /// <returns>An instance of <see cref="SitemapChangeFrequency"/>.</returns>
-        public static SitemapChangeFrequency GetSitemapChangeFrequency(this IPublishedContent content) {
+        public static SitemapChangeFrequency GetSitemapChangeFrequency(this IPublishedContent? content) {
             return content?.Value<SitemapChangeFrequency>(SitemapConstants.Properties.ChangeFrequency) ?? SitemapChangeFrequency.Unspecified;
         }
 
@@ -25,7 +25,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// <param name="content">The content node.</param>
         /// <param name="result">When this method returns, holds an instance of <see cref="SitemapChangeFrequency"/> if successful; otherwise, the default value of <see cref="SitemapChangeFrequency"/>.</param>
         /// <returns><see langword="true"/> if the method was successful; otherwise, <see langword="false"/>.</returns>
-        public static bool TryGetSitemapChangeFrequency(this IPublishedContent content, out SitemapChangeFrequency result) {
+        public static bool TryGetSitemapChangeFrequency(this IPublishedContent? content, out SitemapChangeFrequency result) {
             result = content?.Value<SitemapChangeFrequency>(SitemapConstants.Properties.ChangeFrequency) ?? SitemapChangeFrequency.Unspecified;
             return result != SitemapChangeFrequency.Unspecified;
         }
@@ -36,7 +36,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// <param name="content">The content node.</param>
         /// <param name="result">When this method returns, holds an instance of <see cref="SitemapChangeFrequency"/> if successful; otherwise, <see langword="null"/>.</param>
         /// <returns><see langword="true"/> if the method was successful; otherwise, <see langword="false"/>.</returns>
-        public static bool TryGetSitemapChangeFrequency(this IPublishedContent content, out SitemapChangeFrequency? result) {
+        public static bool TryGetSitemapChangeFrequency(this IPublishedContent? content, out SitemapChangeFrequency? result) {
             result = content?.Value<SitemapChangeFrequency>(SitemapConstants.Properties.ChangeFrequency);
             return result != null && result != SitemapChangeFrequency.Unspecified;
         }
@@ -46,7 +46,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// </summary>
         /// <param name="content">The content node.</param>
         /// <returns>The sitemap priority of <paramref name="content"/>.</returns>
-        public static float GetSitemapPriority(this IPublishedContent content) {
+        public static float GetSitemapPriority(this IPublishedContent? content) {
             return content?.Value<float>(SitemapConstants.Properties.Priority) ?? 0.5f;
         }
 
@@ -56,7 +56,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// <param name="content">The content node.</param>
         /// <param name="result">When this method returns, holds an instance of <see cref="float"/> if successful; otherwise, <c>0</c>.</param>
         /// <returns><see langword="true"/> if the method was successful; otherwise, <see langword="false"/>.</returns>
-        public static bool TryGetSitemapPriority(this IPublishedContent content, out float result) {
+        public static bool TryGetSitemapPriority(this IPublishedContent? content, out float result) {
 
             result = 0;
 
@@ -85,7 +85,7 @@ namespace Limbo.Umbraco.Seo.Extensions {
         /// <param name="content">The content node.</param>
         /// <param name="result">When this method returns, holds an instance of <see cref="float"/> if successful; otherwise, <see langword="null"/>.</param>
         /// <returns><see langword="true"/> if the method was successful; otherwise, <see langword="false"/>.</returns>
-        public static bool TryGetSitemapPriority(this IPublishedContent content, out float? result) {
+        public static bool TryGetSitemapPriority(this IPublishedContent? content, out float? result) {
 
             result = null;
 

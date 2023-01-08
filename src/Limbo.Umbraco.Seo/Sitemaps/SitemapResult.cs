@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
@@ -14,12 +15,18 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Gets an instance of <see cref="Exception"/> if building the sitemap was unsuccessful.
         /// </summary>
-        public Exception Exception { get; }
+        public Exception? Exception { get; }
 
         /// <summary>
         /// Gets a list of the sitemap items.
         /// </summary>
-        public List<ISitemapItem> Items { get; }
+        public List<ISitemapItem>? Items { get; }
+
+        /// <summary>
+        /// Gets whether the building the sitemap was successful.
+        /// </summary>
+        [MemberNotNullWhen(true, "Items")]
+        public bool IsSuccesful => Items is not null;
 
         #endregion
 

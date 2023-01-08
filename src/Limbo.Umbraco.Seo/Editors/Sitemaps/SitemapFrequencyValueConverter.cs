@@ -22,12 +22,8 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
             return PropertyCacheLevel.Element;
         }
 
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
-            return EnumUtils.ParseEnum(source as string, SitemapChangeFrequency.Unspecified);
-        }
-
-        public override object ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
-            return inter;
+        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
+            return EnumUtils.ParseEnum((source as string)!, SitemapChangeFrequency.Unspecified);
         }
 
     }

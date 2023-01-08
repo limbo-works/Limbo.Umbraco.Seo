@@ -31,12 +31,12 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Gets or sets the domain associated with the current request.
         /// </summary>
-        public IDomain Domain { get; set; }
+        public IDomain? Domain { get; set; }
 
         /// <summary>
         /// Gets or sets a reference to the <see cref="IPublishedContent"/> representing the root node.
         /// </summary>
-        public IPublishedContent RootNode { get; set; }
+        public IPublishedContent? RootNode { get; set; }
 
         #endregion
 
@@ -49,7 +49,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <param name="uri">An instance of <see cref="Uri"/> representing the requested URL.</param>
         /// <param name="domains">A list of all domains added to Umbraco.</param>
         /// <param name="domain">A reference to th current <see cref="IDomain"/>, if any.</param>
-        public SitemapContext(HttpContext context, Uri uri, IReadOnlyList<IDomain> domains, IDomain domain) {
+        public SitemapContext(HttpContext context, Uri uri, IReadOnlyList<IDomain> domains, IDomain? domain) {
             HttpContext = context;
             Uri = uri;
             Domains = domains;

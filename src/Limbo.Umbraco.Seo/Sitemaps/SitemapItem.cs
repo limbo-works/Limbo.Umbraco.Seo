@@ -24,12 +24,20 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Gets or sets the change frequency of the item.
         /// </summary>
-        public SitemapChangeFrequency ChangeFrequency { get; set; }
+        public SitemapChangeFrequency? ChangeFrequency { get; set; }
 
         /// <summary>
         /// Gets or sets the priority of the item.
         /// </summary>
         public float? PagePriority { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance based on the specified URL.
+        /// </summary>
+        /// <param name="url"></param>
+        public SitemapItem(string url) {
+            Url = url;
+        }
 
         /// <summary>
         /// Returns an instance of <see cref="XElement"/> representing the sitemap item.

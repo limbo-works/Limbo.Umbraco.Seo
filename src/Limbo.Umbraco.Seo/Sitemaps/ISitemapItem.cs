@@ -22,7 +22,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Gets the change frequency of the item.
         /// </summary>
-        SitemapChangeFrequency ChangeFrequency { get; }
+        SitemapChangeFrequency? ChangeFrequency { get; }
 
         /// <summary>
         /// Gets the priority of the item.

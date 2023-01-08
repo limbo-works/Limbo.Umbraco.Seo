@@ -29,12 +29,12 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Gets or sets the domain associated with the current request.
         /// </summary>
-        IDomain Domain { get; set; }
+        IDomain? Domain { get; set; }
 
         /// <summary>
         /// Gets or sets a reference to the <see cref="IPublishedContent"/> representing the root node.
         /// </summary>
-        IPublishedContent RootNode { get; set; }
+        IPublishedContent? RootNode { get; set; }
 
     }
 

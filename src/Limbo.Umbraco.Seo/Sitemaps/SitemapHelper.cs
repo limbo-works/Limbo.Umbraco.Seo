@@ -51,7 +51,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             IReadOnlyList<IDomain> domains = _domainService.GetAll(false).ToArray();
 
             // Get the first matching domain (or null if no matches were found)
-            IDomain domain = domains.FirstOrDefault(d => IsMatch(url, d));
+            IDomain? domain = domains.FirstOrDefault(d => IsMatch(url, d));
 
             // Continue building the sitemap
             return BuildSitemap(new SitemapContext(context, url, domains, domain));
@@ -80,11 +80,11 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <returns>An instance </returns>
         protected virtual IPublishedContent FindRootNode(ISitemapContext context) {
 
-            if (!_umbracoContextAccessor.TryGetUmbracoContext(out IUmbracoContext umbracoContext)) {
+            if (!_umbracoContextAccessor.TryGetUmbracoContext(out IUmbracoContext? umbracoContext)) {
                 throw new SitemapException("Failed getting reference to the current Umbraco context.");
             }
 
-            IPublishedContent rootNode;
+            IPublishedContent? rootNode;
 
             if (context.Domain is null) {
 
@@ -102,7 +102,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             if (context.Domain.RootContentId is null or <= 0) throw new SitemapException(HttpStatusCode.NotFound, "Domain does not specify a root ID.");
 
             // Loop up the root node from the domain
-            rootNode = umbracoContext.Content.GetById(context.Domain.RootContentId.Value);
+            rootNode = umbracoContext.Content?.GetById(context.Domain.RootContentId.Value);
             return rootNode ?? throw new SitemapException("Failed determining root node from request.");
 
         }
@@ -184,7 +184,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             try {
 
                 // Run the same for all children
-                foreach (IPublishedContent child in node.ChildrenForAllCultures) BuildSitemap(context, items, child);
+                foreach (IPublishedContent child in node.ChildrenForAllCultures!) BuildSitemap(context, items, child);
 
             } catch (Exception ex) {
 
@@ -212,9 +212,8 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             string absoluteUrl = node.Url(mode: UrlMode.Absolute);
 
             // Initialize a new item
-            SitemapItem item = new() {
-                Url = absoluteUrl,
-                LastModified = node.UpdateDate, // TODO: Should this be UTC?
+            SitemapItem item = new(absoluteUrl) {
+                LastModified = node.UpdateDate // TODO: Should this be UTC?
             };
 
             if (node.TryGetSitemapChangeFrequency(out SitemapChangeFrequency frequency)) {
