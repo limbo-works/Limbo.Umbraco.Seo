@@ -19,6 +19,12 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         [ConfigurationField("description", "Description properties", view: "textstring", Description = "Specify a comma separated list of properties that should be used for determining the page's SEO description.")]
         public string? DescriptionProperties { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether asteriscs in the title properties should be removed.
+        /// </summary>
+        [ConfigurationField("removeAsteriscs", "Remove asteriscs?", "boolean", Description = "Feature used by Limbo. Should probably be documented.")]
+        public bool RemoveAsteriscs { get; set; }
+
     }
 
 }

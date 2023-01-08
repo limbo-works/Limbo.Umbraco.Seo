@@ -104,6 +104,9 @@
             if (!vm.properties.title[i].value) continue;
 
             vm.title = vm.properties.title[i].value;
+
+            if ($scope.model.config?.removeAsteriscs === true) vm.title = vm.title.replace(/\*/g, "");
+
             return;
 
         }
