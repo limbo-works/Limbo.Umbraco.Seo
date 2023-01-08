@@ -1,6 +1,6 @@
 ﻿using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
+namespace Limbo.Umbraco.Seo.Editors {
 
     /// <summary>
     /// Class representing the configuration of <see cref="PreviewEditor"/>.
