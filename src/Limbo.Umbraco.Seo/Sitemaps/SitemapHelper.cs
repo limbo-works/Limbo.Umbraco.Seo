@@ -12,6 +12,8 @@ using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
 
+// ReSharper disable ConvertIfStatementToReturnStatement
+
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
     /// <summary>
@@ -42,37 +44,85 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <returns>An instance of <see cref="ISitemapResult"/>.</returns>
         public virtual ISitemapResult BuildSitemap(HttpContext context) {
 
+            // Determine the current URL/URL
             Uri url = GetUri(context.Request);
 
-            IDomain domain = _domainService
-                .GetAll(false)
-                .FirstOrDefault(d => d.DomainName.StartsWith($"{url.Scheme}://{url.Authority}") ||
-                                     d.DomainName.StartsWith($"{url.Scheme}://{url.Host}") ||
-                                     d.DomainName.Contains(url.Authority) ||
-                                     d.DomainName.Contains(url.Host));
+            // Get a list of all domains configured in Umbraco
+            IReadOnlyList<IDomain> domains = _domainService.GetAll(false).ToArray();
 
-            return BuildSitemap(context, domain);
+            // Get the first matching domain (or null if no matches were found)
+            IDomain domain = domains.FirstOrDefault(d => IsMatch(url, d));
+
+            // Continue building the sitemap
+            return BuildSitemap(new SitemapContext(context, url, domains, domain));
 
         }
 
         /// <summary>
-        /// Returns an instance of <see cref="ISitemapResult"/> for the specified HTTP <paramref name="context"/> and <paramref name="domain"/>.
+        /// Returns  whether <paramref name="url"/> and <paramref name="domain"/>.
         /// </summary>
-        /// <param name="context">The HTTP context.</param>
-        /// <param name="domain">The Umbraco domain.</param>
+        /// <param name="url">The current URL.</param>
+        /// <param name="domain">The domain to check.</param>
+        /// <returns><see langword="true"/> if <paramref name="url"/> and <paramref name="domain"/> matches; otherwise, <see langword="false"/>.</returns>
+        protected virtual bool IsMatch(Uri url, IDomain domain) {
+            if (domain.DomainName.StartsWith($"{url.Scheme}://{url.Authority}")) return true;
+            if (domain.DomainName.StartsWith($"{url.Scheme}://{url.Host}")) return true;
+            if (domain.DomainName.Contains(url.Authority)) return true;
+            if (domain.DomainName.Contains(url.Host)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Attempts to find the root node of the specified sitemap <paramref name="context"/>. if a root node isn't
+        /// found, an exception of type of <see cref="SitemapException"/> is thrown.
+        /// </summary>
+        /// <param name="context">A reference to the current sitemap context.</param>
+        /// <returns>An instance </returns>
+        protected virtual IPublishedContent FindRootNode(ISitemapContext context) {
+
+            if (!_umbracoContextAccessor.TryGetUmbracoContext(out IUmbracoContext umbracoContext)) {
+                throw new SitemapException("Failed getting reference to the current Umbraco context.");
+            }
+
+            IPublishedContent rootNode;
+
+            if (context.Domain is null) {
+
+                // If one or more domains are configured in Umbraco, we should trigger an exception if a matching domain isn't found
+                if (context.Domains.Count > 0) throw new SitemapException(HttpStatusCode.NotFound, "Unable to find domain.");
+
+                // If no domains are configured in Umbraco, we fall back to the first root node in the content cache
+                rootNode = umbracoContext.Content?.GetAtRoot().FirstOrDefault();
+                if (rootNode is null) throw new SitemapException("Failed determining root node from request.");
+                return rootNode;
+
+            }
+
+            // If the matched domain doesn't specify a valid root node ID, we trigger an exception as well
+            if (context.Domain.RootContentId is null or <= 0) throw new SitemapException(HttpStatusCode.NotFound, "Domain does not specify a root ID.");
+
+            // Loop up the root node from the domain
+            rootNode = umbracoContext.Content.GetById(context.Domain.RootContentId.Value);
+            return rootNode ?? throw new SitemapException("Failed determining root node from request.");
+
+        }
+
+        /// <summary>
+        /// Returns an instance of <see cref="ISitemapResult"/> for the specified sitemap <paramref name="context"/>.
+        /// </summary>
+        /// <param name="context">A reference to the current sitemap context.</param>
         /// <returns>An instance of <see cref="ISitemapResult"/>.</returns>
-        protected virtual ISitemapResult BuildSitemap(HttpContext context, IDomain domain) {
+        protected virtual ISitemapResult BuildSitemap(ISitemapContext context) {
 
             try {
 
-                if (domain == null) throw new SitemapException(HttpStatusCode.NotFound, "Unable to find domain.");
-                if (domain.RootContentId is null or <= 0) throw new SitemapException(HttpStatusCode.NotFound, "Domain does not specify a root ID.");
+                // Attemp to find the root node
+                context.RootNode = FindRootNode(context);
 
                 List<ISitemapItem> items = new();
 
-                IPublishedContent root = _umbracoContextAccessor.GetRequiredUmbracoContext().Content.GetById(domain.RootContentId.Value);
-
-                BuildSitemap(context, items, root);
+                // Start recursively building the sitemap
+                BuildSitemap(context, items, context.RootNode);
 
                 return new SitemapResult(items);
 
@@ -87,9 +137,10 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Returns whether the specified content <paramref name="node"/> should be ignored from the sitemap.
         /// </summary>
+        /// <param name="context">A reference to the current sitemap context.</param>
         /// <param name="node">The content node.</param>
         /// <returns><see langword="true"/> if <paramref name="node"/> should be ignored; otherwise, <see langword="false"/>.</returns>
-        protected virtual bool IgnoreNode(IPublishedContent node) {
+        protected virtual bool IgnoreNode(ISitemapContext context, IPublishedContent node) {
 
             // Skip formRender
             if (node.ContentType.Alias == "formRender") return true;
@@ -104,9 +155,10 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Returns whether children under the specified content <paramref name="node"/> should be ignored from the sitemap.
         /// </summary>
+        /// <param name="context">A reference to the current sitemap context.</param>
         /// <param name="node">The content node.</param>
         /// <returns><see langword="true"/> if children under <paramref name="node"/> should be ignored; otherwise, <see langword="false"/>.</returns>
-        protected virtual bool IgnoreChildren(IPublishedContent node) {
+        protected virtual bool IgnoreChildren(ISitemapContext context, IPublishedContent node) {
 
             // Skip formRender
             if (node.ContentType.Alias == "formRender") return true;
@@ -116,20 +168,16 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         }
 
         /// <summary>
-        /// Recursively builds the sitemap based on the specified <paramref name="context"/> and content <paramref name="node"/>.
+        /// Recursively builds the sitemap based on the specified sitemap <paramref name="context"/>.
         /// </summary>
         /// <param name="context">The HTTP context.</param>
         /// <param name="items">A list of all the sitemap items.</param>
         /// <param name="node">The current content node.</param>
-        protected virtual void BuildSitemap(HttpContext context, List<ISitemapItem> items, IPublishedContent node) {
+        protected virtual void BuildSitemap(ISitemapContext context, List<ISitemapItem> items, IPublishedContent node) {
 
-            if (!IgnoreNode(node)) {
+            if (!IgnoreNode(context, node)) items.Add(CreateItem(context, node));
 
-                items.Add(CreateItem(context, node));
-
-            }
-
-            if (IgnoreChildren(node)) return;
+            if (IgnoreChildren(context, node)) return;
 
             try {
 
@@ -149,19 +197,15 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <summary>
         /// Creates and returns a new <see cref="SitemapItem"/> instance based on the specified HTTP context <paramref name="context"/> and content node <paramref name="node"/>.
         /// </summary>
-        /// <param name="context">The HTTP context.</param>
+        /// <param name="context">A reference to the current sitemap context.</param>
         /// <param name="node">An instance of <see cref="IPublishedContent"/> representing the node.</param>
         /// <returns>An instance of <see cref="SitemapItem"/>.</returns>
-        protected virtual SitemapItem CreateItem(HttpContext context, IPublishedContent node) {
+        protected virtual SitemapItem CreateItem(ISitemapContext context, IPublishedContent node) {
 
-            Uri uri = GetUri(context.Request);
+            // Get the absolute of the node
+            string absoluteUrl = node.Url(mode: UrlMode.Absolute);
 
-            string absoluteUrl = uri.Scheme + Uri.SchemeDelimiter + uri.Host + node.Url();
-
-            // TODO: Isn't this more correct?
-            absoluteUrl = node.Url(mode: UrlMode.Absolute);
-
-
+            // Initialize a new item
             SitemapItem item = new() {
                 Url = absoluteUrl,
                 LastModified = node.UpdateDate, // TODO: Should this be UTC?
