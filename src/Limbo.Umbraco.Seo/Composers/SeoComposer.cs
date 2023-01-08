@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.Seo.Sitemaps;
+﻿using Limbo.Umbraco.Seo.Manifests;
+using Limbo.Umbraco.Seo.Sitemaps;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
@@ -11,6 +12,7 @@ namespace Limbo.Umbraco.Seo.Composers {
 
         public void Compose(IUmbracoBuilder builder) {
             builder.Services.AddUnique<ISitemapHelper, SitemapHelper>();
+            builder.ManifestFilters().Append<SeoManifestFilter>();
         }
 
     }

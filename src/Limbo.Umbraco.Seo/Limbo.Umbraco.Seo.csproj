@@ -43,7 +43,6 @@
     <Content Include="wwwroot\**\*.html" />
     <Content Include="wwwroot\**\*.js" />
     <Content Include="wwwroot\Lang\*.xml" />
-    <Content Include="wwwroot\package.manifest" />
     <Content Include="wwwroot\Styles\Styles.css">
       <DependentUpon>Styles.less</DependentUpon>
     </Content>
