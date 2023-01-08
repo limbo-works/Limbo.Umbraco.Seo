@@ -179,6 +179,8 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
             if (IgnoreChildren(context, node)) return;
 
+#pragma warning disable CS0168
+
             try {
 
                 // Run the same for all children
@@ -188,9 +190,13 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
 #if DEBUG
                 _logger.LogError(ex, $"Failed generating sitemap for node with ID {node.Id}");
+#else
+                // ignore
 #endif
 
             }
+
+#pragma warning restore CS0168
 
         }
 
