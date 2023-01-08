@@ -8,18 +8,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>2.0.0-alpha001</VersionPrefix>
+    <VersionPrefix>2.0.0-beta001</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
     <Description>SEO package for Umbraco 9.</Description>
-    <Copyright>Copyright © 2022</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
   </PropertyGroup>
 
+  <!-- Information for the NuGet package -->
   <PropertyGroup>
-    <!-- Information for the NuGet package -->
-    <PackageTags>Skybrud Limbo Umbraco Seo</PackageTags>
+    <PackageTags>Skybrud, Limbo, Umbraco, Seo, Sitemap, Content, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v2/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
@@ -27,16 +27,16 @@
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</RepositoryUrl>
   </PropertyGroup>
 
+  <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <!-- Include NuGet dependencies -->
     <PackageReference Include="Skybrud.Essentials" Version="1.1.44" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[9.0.0,10.0)" />
   </ItemGroup>
 
+  <!-- Include backoffice assets -->
   <ItemGroup>
-    <!-- Include backoffice assets -->
     <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.js" />
     <Content Include="App_Plugins\Limbo.Umbraco.Seo\Lang\*.xml" />
@@ -47,18 +47,18 @@
     </Content>
   </ItemGroup>
 
+  <!-- Include the targets file -->
   <ItemGroup>
-    <!-- Include the targets file -->
     <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
   </ItemGroup>
 
+  <!-- Include package icon for NuGet -->
   <ItemGroup>
-    <!-- Include package icon for NuGet -->
     <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <!-- Generate XML documentation -->
   <PropertyGroup>
-    <!-- Generate XML documentation -->
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
