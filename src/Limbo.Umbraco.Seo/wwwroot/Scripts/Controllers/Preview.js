@@ -34,8 +34,8 @@
     }
 
     // Set fallback values if not specified on the data type
-    if (!vm.titleProperties) vm.titleProperties = ["seoTitle", "title"];
-    if (!vm.descriptionProperties) vm.descriptionProperties = ["seoMetaDescription", "teaser", "introTeaser"];
+    if (vm.titleProperties.length === 0) vm.titleProperties = ["seoTitle", "title"];
+    if (vm.descriptionProperties.length === 0) vm.descriptionProperties = ["seoMetaDescription", "teaser", "introTeaser"];
 
     // TODO: Add support for variants
     const variantIndex = 0;
