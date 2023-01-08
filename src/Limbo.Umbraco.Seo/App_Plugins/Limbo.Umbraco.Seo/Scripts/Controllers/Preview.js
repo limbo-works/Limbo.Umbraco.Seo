@@ -1,108 +1,133 @@
 ﻿angular.module("umbraco").controller("Limbo.Umbraco.Seo.Preview", function ($scope, editorState) {
 
-    $scope.title = "";
-    $scope.description = "";
+    const vm = this;
+
+    vm.title = "";
+    vm.description = "";
 
     $scope.editorState = editorState;
 
-    let nameVariant = 0;
+    vm.titleProperties = [];
+    vm.descriptionProperties = [];
 
-    let titleVariant = 0;
-    let titleTab = -1;
-    let titleProperty = -1;
+    vm.properties = {
+        title: [],
+        description: []
+    };
 
-    let seoTitleVariant = 0;
-    let seoTitleTab = -1;
-    let seoTitleProperty = -1;
+    if ($scope.model.config) {
 
-    let teaserVariant = 0;
-    let teaserTab = -1;
-    let teaserProperty = -1;
+        if (typeof $scope.model.config.title === "string") {
+            vm.titleProperties = $scope.model.config.title
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => !!x);
+        }
 
-    let seoMetaDescriptionVariant = 0;
-    let seoMetaDescriptionTab = -1;
-    let seoMetaDescriptionProperty = -1;
+        if (typeof $scope.model.config.description === "string") {
+            vm.descriptionProperties = $scope.model.config.description
+                .split(",")
+                .map(x => x.trim())
+                .filter(x => !!x);
+        }
 
-    console.log($scope.editorState.current);
+    }
 
-    const variant = $scope.editorState.current.variants[0];
-    variant.tabs.forEach(function (tab, tabIndex) {
+    // Set fallback values if not specified on the data type
+    if (!vm.titleProperties) vm.titleProperties = ["seoTitle", "title"];
+    if (!vm.descriptionProperties) vm.descriptionProperties = ["seoMetaDescription", "teaser", "introTeaser"];
 
-        tab.properties.forEach(function (property, propertyIndex) {
+    // TODO: Add support for variants
+    const variantIndex = 0;
+    const variant = $scope.editorState.current.variants[variantIndex];
 
-            switch (property.alias) {
-                case "title":
-                case "pageTitle":
-                    titleTab = tabIndex;
-                    titleProperty = propertyIndex;
-                    break;
-                case "seoTitle":
-                    seoTitleTab = tabIndex;
-                    seoTitleProperty = propertyIndex;
-                    break;
-                case "teaser":
-                    teaserTab = tabIndex;
-                    teaserProperty = propertyIndex;
-                    break;
-                case "seoMetaDescription":
-                    seoMetaDescriptionTab = tabIndex;
-                    seoMetaDescriptionProperty = propertyIndex;
-                    break;
-            }
-        });
-    });
-
+    // Listen for changes on the "name" field
+    const nameVariant = 0;
     $scope.$watch(`editorState.current.variants[${nameVariant}].name`, function () {
-        $scope.runTitle();
+        vm.titleUpdated();
     });
 
-    $scope.$watch(`editorState.current.variants[${titleVariant}].tabs[${titleTab}].properties[${titleProperty}].value`, function () {
-        $scope.runTitle();
+    vm.titleProperties.forEach(function (alias) {
+
+        let hasProperty = false;
+
+        variant.tabs.forEach(function (tab, tabIndex) {
+
+            tab.properties.forEach(function (property, propertyIndex) {
+
+                if (hasProperty) return;
+                if (property.alias !== alias) return;
+
+                hasProperty = true;
+
+                vm.properties.title.push(property);
+
+                $scope.$watch(`editorState.current.variants[${variantIndex}].tabs[${tabIndex}].properties[${propertyIndex}].value`, function () {
+                    vm.titleUpdated();
+                });
+
+            });
+
+        });
+
     });
 
-    $scope.$watch(`editorState.current.variants[${seoTitleVariant}].tabs[${seoTitleTab}].properties[${seoTitleProperty}].value`, function () {
-        $scope.runTitle();
+    vm.descriptionProperties.forEach(function (alias) {
+
+        let hasProperty = false;
+
+        variant.tabs.forEach(function (tab, tabIndex) {
+
+            tab.properties.forEach(function (property, propertyIndex) {
+
+                if (hasProperty) return;
+                if (property.alias !== alias) return;
+
+                hasProperty = true;
+
+                vm.properties.description.push(property);
+
+                $scope.$watch(`editorState.current.variants[${variantIndex}].tabs[${tabIndex}].properties[${propertyIndex}].value`, function () {
+                    vm.descriptionUpdated();
+                });
+
+            });
+
+        });
+
     });
 
-    $scope.$watch(`editorState.current.variants[${teaserVariant}].tabs[${teaserTab}].properties[${teaserProperty}].value`, function () {
-        $scope.runDescription();
-    });
+    vm.titleUpdated = function () {
 
-    $scope.$watch(`editorState.current.variants[${seoMetaDescriptionVariant}].tabs[${seoMetaDescriptionTab}].properties[${seoMetaDescriptionProperty}].value`, function () {
-        $scope.runDescription();
-    });
+        for (let i = 0; i < vm.properties.title.length; i++) {
 
-    $scope.runTitle = function () {
+            if (!vm.properties.title[i].value) continue;
 
-        if (seoTitleTab >= 0 && seoTitleProperty >= 0) {
-            if (editorState.current.variants[seoTitleVariant].tabs[seoTitleTab].properties[seoTitleProperty].value !== "") {
-                $scope.title = editorState.current.variants[seoTitleVariant].tabs[seoTitleTab].properties[seoTitleProperty].value;
-                return;
-            }
+            vm.title = vm.properties.title[i].value;
+            return;
+
         }
 
-        if (titleTab >= 0 && titleProperty >= 0) {
-            if (editorState.current.variants[titleVariant].tabs[titleTab].properties[titleProperty].value !== "") {
-                $scope.title = editorState.current.variants[titleVariant].tabs[titleTab].properties[titleProperty].value;
-                return;
-            } 
-        }
-
-        $scope.title = editorState.current.variants[nameVariant].name;
+        vm.title = editorState.current.variants[nameVariant].name;
 
     };
 
-    $scope.runDescription = function () {
+    vm.descriptionUpdated = function () {
 
-        if (seoMetaDescriptionTab >= 0 && seoMetaDescriptionProperty >= 0) {
-            if (editorState.current.variants[seoMetaDescriptionVariant].tabs[seoMetaDescriptionTab].properties[seoMetaDescriptionProperty].value !== "") {
-                $scope.description = editorState.current.variants[seoMetaDescriptionVariant].tabs[seoMetaDescriptionTab].properties[seoMetaDescriptionProperty].value;
-                return;
-            }
+        for (let i = 0; i < vm.properties.description.length; i++) {
+
+            if (!vm.properties.description[i].value) continue;
+
+            vm.description = vm.properties.description[i].value;
+            return;
+
         }
 
-        $scope.description = editorState.current.variants[teaserVariant].tabs[teaserTab].properties[teaserProperty].value;
+        vm.description = "";
 
-    }
+    };
+
+    vm.titleUpdated();
+    vm.descriptionUpdated();
 
 });

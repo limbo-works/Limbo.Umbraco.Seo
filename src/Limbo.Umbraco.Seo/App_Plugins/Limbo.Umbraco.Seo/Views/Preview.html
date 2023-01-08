@@ -1,10 +1,10 @@
-﻿<div id="limboSeoPreview" class="limbo-seo-preview" ng-controller="Limbo.Umbraco.Seo.Preview">
+﻿<div class="limbo-seo-preview" ng-controller="Limbo.Umbraco.Seo.Preview as vm">
     <div class="google-result-preview">
         <div class="wrapper clearfix">
             <div class="preview-window  clearfix">
                 <div class="results">
-                    <p id="title" class="title">{{title | limitTo:60}}</p>
-                    <p id="desc" class="description">{{description | limitTo:160}}</p>
+                    <p id="title" class="title">{{vm.title | limitTo:60}}</p>
+                    <p id="desc" class="description">{{vm.description | limitTo:160}}</p>
                 </div>
             </div>
         </div>
