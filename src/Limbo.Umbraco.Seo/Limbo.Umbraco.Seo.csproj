@@ -1,19 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <LangVersion>9.0</LangVersion>
-    <TargetFramework>net5.0</TargetFramework>
-    <ContentTargetFolders>content</ContentTargetFolders>
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <LangVersion>11.0</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
+    <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>2.0.0-beta001</VersionPrefix>
+    <VersionPrefix>3.0.0-beta001</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
-    <Description>SEO package for Umbraco 9.</Description>
+    <Description>SEO package for Umbraco 10+.</Description>
     <Copyright>Copyright © 2023</Copyright>
   </PropertyGroup>
 
@@ -21,7 +22,7 @@
   <PropertyGroup>
     <PackageTags>Skybrud, Limbo, Umbraco, Seo, Sitemap, Content, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v2/</PackageProjectUrl>
+    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v3/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</RepositoryUrl>
@@ -30,26 +31,24 @@
   <!-- Include NuGet dependencies -->
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials" Version="1.1.44" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,10.0)" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,10.0)" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[9.0.0,10.0)" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,11.0)" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,11.0)" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,11.0)" />
   </ItemGroup>
 
   <!-- Include backoffice assets -->
   <ItemGroup>
-    <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.html" />
-    <Content Include="App_Plugins\Limbo.Umbraco.Seo\**\*.js" />
-    <Content Include="App_Plugins\Limbo.Umbraco.Seo\Lang\*.xml" />
-    <Content Include="App_Plugins\Limbo.Umbraco.Seo\package.manifest" />
-    <None Include="App_Plugins\Limbo.Umbraco.Seo\Styles\Styles.less" />
-    <Content Include="App_Plugins\Limbo.Umbraco.Seo\Styles\Styles.css">
+    <Content Remove="wwwroot\**\*" />
+    <Content Include="wwwroot\**\*.html" />
+    <Content Include="wwwroot\**\*.js" />
+    <Content Include="wwwroot\Lang\*.xml" />
+    <Content Include="wwwroot\package.manifest" />
+    <Content Include="wwwroot\Styles\Styles.css">
       <DependentUpon>Styles.less</DependentUpon>
     </Content>
-  </ItemGroup>
-
-  <!-- Include the targets file -->
-  <ItemGroup>
-    <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+    <Content Remove="compilerconfig.json" />
+    <None Include="wwwroot\**\*.less" />
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->

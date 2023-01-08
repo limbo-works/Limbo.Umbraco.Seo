@@ -12,6 +12,7 @@ namespace Limbo.Umbraco.Seo.Composers {
         public void Compose(IUmbracoBuilder builder) {
             builder.Services.AddUnique<ISitemapHelper, SitemapHelper>();
         }
+
     }
 
 }

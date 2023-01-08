@@ -1,5 +1,6 @@
 ﻿using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.Services;
 
 #pragma warning disable CS1591
 
@@ -12,6 +13,7 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
     public class PreviewEditor : DataEditor {
 
         private readonly IIOHelper _ioHelper;
+        private readonly IEditorConfigurationParser _editorConfigurationParser;
 
         #region Constants
 
@@ -34,8 +36,9 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
 
         #region Constructors
 
-        public PreviewEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
+        public PreviewEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(dataValueEditorFactory) {
             _ioHelper = ioHelper;
+            _editorConfigurationParser = editorConfigurationParser;
         }
 
         #endregion
@@ -43,7 +46,7 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         #region member methods
 
         protected override IConfigurationEditor CreateConfigurationEditor() {
-            return new PreviewConfigurationEditor(_ioHelper);
+            return new PreviewConfigurationEditor(_ioHelper, _editorConfigurationParser);
         }
 
         #endregion
