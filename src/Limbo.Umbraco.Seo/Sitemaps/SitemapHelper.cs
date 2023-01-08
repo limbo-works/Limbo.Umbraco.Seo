@@ -12,22 +12,34 @@ using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
 
-#pragma warning disable 168
-
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
+    /// <summary>
+    /// Class representing the default implementation of the XML sitemap helper used by this package.
+    /// </summary>
     public class SitemapHelper : ISitemapHelper {
 
         private readonly ILogger<SitemapHelper> _logger;
         private readonly IDomainService _domainService;
         private readonly IUmbracoContextAccessor _umbracoContextAccessor;
 
+        /// <summary>
+        /// Initializes a instanced based on the specified DI dependencies.
+        /// </summary>
+        /// <param name="logger">The current logger.</param>
+        /// <param name="domainService">The current domain service.</param>
+        /// <param name="umbracoContextAccessor">The current Umbraco context accessor.</param>
         public SitemapHelper(ILogger<SitemapHelper> logger, IDomainService domainService, IUmbracoContextAccessor umbracoContextAccessor) {
             _logger = logger;
             _domainService = domainService;
             _umbracoContextAccessor = umbracoContextAccessor;
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="ISitemapResult"/> for the specified HTTP <paramref name="context"/>.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <returns>An instance of <see cref="ISitemapResult"/>.</returns>
         public virtual ISitemapResult BuildSitemap(HttpContext context) {
 
             Uri url = GetUri(context.Request);
@@ -43,14 +55,20 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
+        /// <summary>
+        /// Returns an instance of <see cref="ISitemapResult"/> for the specified HTTP <paramref name="context"/> and <paramref name="domain"/>.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="domain">The Umbraco domain.</param>
+        /// <returns>An instance of <see cref="ISitemapResult"/>.</returns>
         protected virtual ISitemapResult BuildSitemap(HttpContext context, IDomain domain) {
 
             try {
 
                 if (domain == null) throw new SitemapException(HttpStatusCode.NotFound, "Unable to find domain.");
-                if (domain.RootContentId == null || domain.RootContentId <= 0) throw new SitemapException(HttpStatusCode.NotFound, "Domain does not specify a root ID.");
+                if (domain.RootContentId is null or <= 0) throw new SitemapException(HttpStatusCode.NotFound, "Domain does not specify a root ID.");
 
-                List<ISitemapItem> items = new List<ISitemapItem>();
+                List<ISitemapItem> items = new();
 
                 IPublishedContent root = _umbracoContextAccessor.GetRequiredUmbracoContext().Content.GetById(domain.RootContentId.Value);
 
@@ -66,6 +84,11 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
+        /// <summary>
+        /// Returns whether the specified content <paramref name="node"/> should be ignored from the sitemap.
+        /// </summary>
+        /// <param name="node">The content node.</param>
+        /// <returns><see langword="true"/> if <paramref name="node"/> should be ignored; otherwise, <see langword="false"/>.</returns>
         protected virtual bool IgnoreNode(IPublishedContent node) {
 
             // Skip formRender
@@ -78,6 +101,11 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
+        /// <summary>
+        /// Returns whether children under the specified content <paramref name="node"/> should be ignored from the sitemap.
+        /// </summary>
+        /// <param name="node">The content node.</param>
+        /// <returns><see langword="true"/> if children under <paramref name="node"/> should be ignored; otherwise, <see langword="false"/>.</returns>
         protected virtual bool IgnoreChildren(IPublishedContent node) {
 
             // Skip formRender
@@ -87,6 +115,12 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
+        /// <summary>
+        /// Recursively builds the sitemap based on the specified <paramref name="context"/> and content <paramref name="node"/>.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="items">A list of all the sitemap items.</param>
+        /// <param name="node">The current content node.</param>
         protected virtual void BuildSitemap(HttpContext context, List<ISitemapItem> items, IPublishedContent node) {
 
             if (!IgnoreNode(node)) {
@@ -112,17 +146,23 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
         }
 
+        /// <summary>
+        /// Creates and returns a new <see cref="SitemapItem"/> instance based on the specified HTTP context <paramref name="context"/> and content node <paramref name="node"/>.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="node">An instance of <see cref="IPublishedContent"/> representing the node.</param>
+        /// <returns>An instance of <see cref="SitemapItem"/>.</returns>
         protected virtual SitemapItem CreateItem(HttpContext context, IPublishedContent node) {
 
             Uri uri = GetUri(context.Request);
 
             string absoluteUrl = uri.Scheme + Uri.SchemeDelimiter + uri.Host + node.Url();
 
-            // TODO: Isn't this mroe correct?
+            // TODO: Isn't this more correct?
             absoluteUrl = node.Url(mode: UrlMode.Absolute);
 
 
-            SitemapItem item = new SitemapItem {
+            SitemapItem item = new() {
                 Url = absoluteUrl,
                 LastModified = node.UpdateDate, // TODO: Should this be UTC?
             };

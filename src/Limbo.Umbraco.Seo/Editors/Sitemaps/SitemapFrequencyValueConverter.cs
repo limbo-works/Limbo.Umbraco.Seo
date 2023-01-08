@@ -4,6 +4,8 @@ using Skybrud.Essentials.Enums;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 
+#pragma warning disable CS1591
+
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
 
     public class SitemapFrequencyValueConverter : PropertyValueConverterBase {

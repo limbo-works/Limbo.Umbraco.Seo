@@ -1,5 +1,7 @@
 ﻿using Umbraco.Cms.Core.PropertyEditors;
 
+#pragma warning disable CS1591
+
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
 
     [DataEditor(EditorAlias, EditorType.PropertyValue, "Limbo Sitemap Priority", EditorView,

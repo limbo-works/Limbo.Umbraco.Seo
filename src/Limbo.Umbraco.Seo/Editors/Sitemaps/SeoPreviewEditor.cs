@@ -1,7 +1,9 @@
 ﻿using Umbraco.Cms.Core.PropertyEditors;
 
+#pragma warning disable CS1591
+
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
-    
+
     [DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView,
         ValueType = ValueTypes.String,
         Group = "Limbo",
@@ -34,6 +36,5 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         #endregion
 
     }
-
 
 }

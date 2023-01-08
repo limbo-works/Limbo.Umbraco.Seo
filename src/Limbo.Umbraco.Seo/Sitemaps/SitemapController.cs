@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using Umbraco.Cms.Web.Common.Controllers;
+#pragma warning disable CS1591
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
@@ -20,7 +21,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             ISitemapResult sitemap = _sitemapHelper.BuildSitemap(HttpContext);
 
             // Generate the XML for the sitemap
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             using (TextWriter writer = new StringWriter(builder)) {
                 sitemap.ToXml().Save(writer);
             }
@@ -31,7 +32,6 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
                 Content = builder.ToString(),
                 StatusCode = 200
             };
-            
 
         }
 
