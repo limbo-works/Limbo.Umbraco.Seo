@@ -4,10 +4,12 @@
     <LangVersion>9.0</LangVersion>
     <TargetFramework>net5.0</TargetFramework>
     <ContentTargetFolders>content</ContentTargetFolders>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
-  
+
   <PropertyGroup>
-    <Version>2.0.0-alpha001</Version>
+    <VersionPrefix>2.0.0-alpha001</VersionPrefix>
+    <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
