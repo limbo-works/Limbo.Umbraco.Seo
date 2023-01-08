@@ -31,13 +31,13 @@
 The Umbraco 9 version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 2.0.0-alpha001
+dotnet add package Limbo.Umbraco.Seo --version 2.0.0-beta001
 ```
 
 or the older NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 2.0.0-alpha001
+Install-Package Limbo.Umbraco.Seo -Version 2.0.0-beta001
 ```
 
 **Umbraco 8**  
