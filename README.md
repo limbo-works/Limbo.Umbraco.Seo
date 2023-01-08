@@ -1,4 +1,4 @@
-# Limbo SEO
+# Limbo SEO [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo) [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
 
 
 **Limbo SEO** is a package for helping improving the SEO experience in the Umbraco backoffice. While still under development, the package currently includes:
@@ -26,26 +26,44 @@
 
 
 
+
+
+
+<br /><br />
+
 ## Installation
 
-The Umbraco 9 version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
+The Umbraco 10+ version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 2.0.0-beta001
+dotnet add package Limbo.Umbraco.Seo --version 3.0.0-beta001
 ```
 
 or the older NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 2.0.0-beta001
+Install-Package Limbo.Umbraco.Seo -Version 3.0.0-beta001
 ```
+
+**Umbraco 9**  
+For the Umbraco 9 version of this package, see the [**v2/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) branch instead.
 
 **Umbraco 8**  
 For the Umbraco 8 version of this package, see the [**v1/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) branch instead.
 
+
+
+
+<br /><br />
+
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/3634580/148427849-7ac515ad-de78-49bc-8312-6782fb9fdf55.png)
+
+
+
+
+<br /><br />
 
 ## Usage
 
