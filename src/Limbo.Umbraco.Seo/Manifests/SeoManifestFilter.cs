@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Skybrud.Essentials.Strings.Extensions;
 using Umbraco.Cms.Core.Manifest;
 
 namespace Limbo.Umbraco.Seo.Manifests {
@@ -10,7 +9,9 @@ namespace Limbo.Umbraco.Seo.Manifests {
         /// <inheritdoc />
         public void Filter(List<PackageManifest> manifests) {
             manifests.Add(new PackageManifest {
-                PackageName = SeoPackage.Alias.ToKebabCase(),
+                AllowPackageTelemetry = true,
+                PackageName = SeoPackage.Name,
+                Version = SeoPackage.InformationalVersion,
                 BundleOptions = BundleOptions.Independent,
                 Scripts = new[] {
                     $"/App_Plugins/{SeoPackage.Alias}/Scripts/Controllers/Preview.js",

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Umbraco.Cms.Core.Semver;
 
 namespace Limbo.Umbraco.Seo {
@@ -24,9 +25,14 @@ namespace Limbo.Umbraco.Seo {
         public static readonly Version Version = typeof(SeoPackage).Assembly.GetName().Version!;
 
         /// <summary>
+        /// Gets the informational version of the package.
+        /// </summary>
+        public static readonly string InformationalVersion = FileVersionInfo.GetVersionInfo(typeof(SeoPackage).Assembly.Location).ProductVersion!;
+
+        /// <summary>
         /// Gets the semantic version of the package.
         /// </summary>
-        public static readonly SemVersion SemVersion = new(Version.Major, Version.Minor, Version.Build);
+        public static readonly SemVersion SemVersion = InformationalVersion;
 
         /// <summary>
         /// Gets the URL of the GitHub repository for this package.
