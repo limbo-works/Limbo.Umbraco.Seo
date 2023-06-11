@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Xml.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
@@ -13,6 +14,27 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <param name="context">The HTTP context.</param>
         /// <returns>An instance of <see cref="ISitemapResult"/>.</returns>
         ISitemapResult BuildSitemap(HttpContext context);
+
+        /// <summary>
+        /// Returns an <see cref="XDocument"/> representing the specified <paramref name="sitemap"/>.
+        /// </summary>
+        /// <param name="sitemap">The sitemap.</param>
+        /// <returns>An instance of <see cref="XDocument"/>.</returns>
+        XDocument ToXmlDocument(ISitemapResult sitemap);
+
+        /// <summary>
+        /// Returns an <see cref="XElement"/> representing the specified <paramref name="sitemap"/>.
+        /// </summary>
+        /// <param name="sitemap">The sitemap.</param>
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        XElement ToXmlElement(ISitemapResult sitemap);
+
+        /// <summary>
+        /// Returns an <see cref="XElement"/> representing the specified sitemap <paramref name="item"/>.
+        /// </summary>
+        /// <param name="item">The sitemap item.</param>
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        XElement ToXmlElement(ISitemapItem item);
 
     }
 

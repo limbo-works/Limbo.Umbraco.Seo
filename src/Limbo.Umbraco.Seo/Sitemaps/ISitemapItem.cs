@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Linq;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
@@ -28,12 +27,6 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// Gets the priority of the item.
         /// </summary>
         float? PagePriority { get; }
-
-        /// <summary>
-        /// Returns an instance of <see cref="XElement"/> representing the sitemap item.
-        /// </summary>
-        /// <returns>An instance of <see cref="XElement"/>.</returns>
-        XElement ToXml();
 
     }
 

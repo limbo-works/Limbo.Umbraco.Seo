@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Xml.Linq;
 using Limbo.Umbraco.Seo.Extensions;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Skybrud.Essentials.Strings.Extensions;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
@@ -237,6 +240,65 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
                 Path = request.Path,
                 Query = request.QueryString.ToUriComponent()
             }.Uri;
+        }
+
+
+        /// <summary>
+        /// Returns an <see cref="XDocument"/> representing the specified <paramref name="sitemap"/>.
+        /// </summary>
+        /// <param name="sitemap">The sitemap.</param>
+        /// <returns>An instance of <see cref="XDocument"/>.</returns>
+        public XDocument ToXmlDocument(ISitemapResult sitemap) {
+            XElement root = ToXmlElement(sitemap);
+            return new XDocument(new XDeclaration("1.0", "utf-8", null), root);
+        }
+
+        /// <summary>
+        /// Returns an <see cref="XElement"/> representing the specified <paramref name="sitemap"/>.
+        /// </summary>
+        /// <param name="sitemap">The sitemap.</param>
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        public XElement ToXmlElement(ISitemapResult sitemap) {
+
+            XElement root;
+
+            if (sitemap.Exception != null || sitemap.Items == null) {
+
+                // Initialize a new <e> element as root
+                root = new XElement(SitemapConstants.XNamespace + "e", "Error");
+
+            } else {
+
+                // Initialize a new <urlset> element as root
+                root = new XElement(SitemapConstants.XNamespace + "urlset");
+
+                // Add an <url> element for each item
+                foreach (ISitemapItem item in sitemap.Items) root.Add(ToXmlElement(item));
+
+            }
+
+            return root;
+
+        }
+
+        /// <summary>
+        /// Returns an <see cref="XElement"/> representing the specified sitemap <paramref name="item"/>.
+        /// </summary>
+        /// <param name="item">The sitemap item.</param>
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        public XElement ToXmlElement(ISitemapItem item) {
+
+            XElement xml = new(
+                SitemapConstants.XNamespace + "url",
+                new XElement(SitemapConstants.XNamespace + "loc", item.Url),
+                new XElement(SitemapConstants.XNamespace + "lastmod", item.LastModified.ToString("yyyy-MM-dd"))
+            );
+
+            if (item.ChangeFrequency > 0) xml.Add(new XElement(SitemapConstants.XNamespace + SitemapConstants.Properties.ChangeFrequency, item.ChangeFrequency.ToLower()));
+            if (item.PagePriority != null) xml.Add(new XElement(SitemapConstants.XNamespace + SitemapConstants.Properties.Priority, item.PagePriority.Value.ToString("N1", CultureInfo.InvariantCulture)));
+
+            return xml;
+
         }
 
     }

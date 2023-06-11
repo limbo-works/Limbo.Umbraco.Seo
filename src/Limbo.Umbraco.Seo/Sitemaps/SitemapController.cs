@@ -30,7 +30,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
             // Generate the XML for the sitemap
             StringBuilder builder = new();
             using (TextWriter writer = new StringWriter(builder)) {
-                sitemap.ToXml().Save(writer);
+                _sitemapHelper.ToXmlDocument(sitemap).Save(writer);
             }
 
             // Return a content result with the XML

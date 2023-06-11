@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Xml.Linq;
 
 namespace Limbo.Umbraco.Seo.Sitemaps {
 
@@ -25,12 +24,6 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// </summary>
         [MemberNotNullWhen(true, "Items")]
         bool IsSuccesful { get; }
-
-        /// <summary>
-        /// Returns an instance of <see cref="XElement"/> representing the sitemap result.
-        /// </summary>
-        /// <returns>An instance of <see cref="XElement"/>.</returns>
-        XDocument ToXml();
 
     }
 
