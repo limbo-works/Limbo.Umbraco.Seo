@@ -206,7 +206,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         /// <param name="context">A reference to the current sitemap context.</param>
         /// <param name="node">An instance of <see cref="IPublishedContent"/> representing the node.</param>
         /// <returns>An instance of <see cref="SitemapItem"/>.</returns>
-        protected virtual SitemapItem CreateItem(ISitemapContext context, IPublishedContent node) {
+        protected virtual ISitemapItem CreateItem(ISitemapContext context, IPublishedContent node) {
 
             // Get the absolute of the node
             string absoluteUrl = node.Url(mode: UrlMode.Absolute);
