@@ -14,7 +14,7 @@
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
     <Description>SEO package for Umbraco 9.</Description>
-    <Copyright>Copyright © 2023</Copyright>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
@@ -29,9 +29,9 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.44" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,10.0)" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,10.0)" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.54" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,9.999)" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,9.999)" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[9.0.0,10.0)" />
   </ItemGroup>
 
