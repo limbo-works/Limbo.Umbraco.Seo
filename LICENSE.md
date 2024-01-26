@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2022 [Anders Bjerner](https://twitter.com/abjerner)
+Copyright (c) 2024 [Limbo](https://www.limbo.works/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
