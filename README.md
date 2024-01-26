@@ -1,9 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <td align="left">
+        :warning:
+      </td>
+      <td align="left" width="100%">
+          <strong>NOTICE</strong>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">
+          The Umbraco 9 package has been retired and is no longer in active development.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 # Limbo SEO
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
+[![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
+[![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
 
-**Limbo SEO** is a package for helping improving the SEO experience in the Umbraco backoffice. While still under development, the package currently includes:
+**Limbo SEO** is a package for helping improving the SEO experience in the Umbraco backoffice. The package includes:
 
- 
 
 **Property Editors**  
 
@@ -14,38 +37,52 @@
 **Other**  
 
 - Logic for easily building sitemaps - extendable via the `ISitemapHelper` interface and the `SitemapHelper` class
-- More to come 😎
+- more...
 
 
 
 
 
-
-
-
-
-
+<br /><br /><br />
 
 ## Installation
 
 The Umbraco 9 version of this package is only available via NuGet. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 2.0.0-beta001
+dotnet add package Limbo.Umbraco.Seo --version 2.0.0
 ```
 
-or the older NuGet Package Manager:
+or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 2.0.0-beta001
+Install-Package Limbo.Umbraco.Seo -Version 2.0.0
 ```
 
 **Umbraco 8**  
-For the Umbraco 8 version of this package, see the [**v1/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) branch instead.
+For the Umbraco 8 version of this package, see the [**v2/main**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) branch instead.
+
+**Umbraco 10-12**  
+For the Umbraco 10 version of this package, see the [**v3/main**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v3/main) branch instead.
+
+
+
+
+
+
+
+<br /><br /><br />
 
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/3634580/148427849-7ac515ad-de78-49bc-8312-6782fb9fdf55.png)
+
+
+
+
+
+
+<br /><br /><br />
 
 ## Usage
 
