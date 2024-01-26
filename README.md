@@ -1,3 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <td align="left">
+        :warning:
+      </td>
+      <td align="left" width="100%">
+          <strong>NOTICE</strong>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">
+          The Umbraco 8 package has been retired and is no longer in active development.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 # Limbo SEO
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
