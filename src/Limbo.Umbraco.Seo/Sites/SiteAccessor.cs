@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Skybrud.Essentials.AspNetCore;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
@@ -53,7 +54,7 @@ public class SiteAccessor : ISiteAccessor {
         result = null;
 
         // Determine the current URL/URL
-        Uri url = GetUri(context.Request);
+        Uri url = context.Request.GetUri();
 
         // Get a list of all domains configured in Umbraco
         IReadOnlyList<IDomain> domains = _domainService.GetAll(false).ToArray();
@@ -84,17 +85,6 @@ public class SiteAccessor : ISiteAccessor {
         if (domain.DomainName.Contains(url.Authority)) return true;
         if (domain.DomainName.Contains(url.Host)) return true;
         return false;
-    }
-
-    private static Uri GetUri(HttpRequest request) {
-        // TODO: Can we move this to one of our other packages?
-        return new UriBuilder {
-            Scheme = request.Scheme,
-            Host = request.Host.Host,
-            Port = request.Host.Port ?? (request.Scheme == "https" ? 80 : 443),
-            Path = request.Path,
-            Query = request.QueryString.ToUriComponent()
-        }.Uri;
     }
 
 }

@@ -8,6 +8,7 @@ using Limbo.Umbraco.Seo.Extensions;
 using Limbo.Umbraco.Seo.Models.Sitemaps;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Skybrud.Essentials.AspNetCore;
 using Skybrud.Essentials.Strings.Extensions;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -48,7 +49,7 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
         public virtual ISitemapResult BuildSitemap(HttpContext context) {
 
             // Determine the current URL/URL
-            Uri url = GetUri(context.Request);
+            Uri url = context.Request.GetUri();
 
             // Get a list of all domains configured in Umbraco
             IReadOnlyList<IDomain> domains = _domainService.GetAll(false).ToArray();
@@ -229,17 +230,6 @@ namespace Limbo.Umbraco.Seo.Sitemaps {
 
             return item;
 
-        }
-
-        private static Uri GetUri(HttpRequest request) {
-            // TODO: Can we move this to one of our other packages?
-            return new UriBuilder {
-                Scheme = request.Scheme,
-                Host = request.Host.Host,
-                Port = request.Host.Port ?? (request.Scheme == "https" ? 80 : 443),
-                Path = request.Path,
-                Query = request.QueryString.ToUriComponent()
-            }.Uri;
         }
 
 
