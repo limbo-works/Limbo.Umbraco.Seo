@@ -27,7 +27,9 @@ namespace Limbo.Umbraco.Seo {
         /// <summary>
         /// Gets the informational version of the package.
         /// </summary>
-        public static readonly string InformationalVersion = FileVersionInfo.GetVersionInfo(typeof(SeoPackage).Assembly.Location).ProductVersion!;
+        public static readonly string InformationalVersion = FileVersionInfo
+            .GetVersionInfo(typeof(SeoPackage).Assembly.Location).ProductVersion!
+            .Split('+')[0];
 
         /// <summary>
         /// Gets the semantic version of the package.
