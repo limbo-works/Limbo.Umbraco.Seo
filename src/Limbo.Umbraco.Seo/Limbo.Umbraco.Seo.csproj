@@ -16,7 +16,7 @@
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
     <Description>SEO package for Umbraco 10+.</Description>
-    <Copyright>Copyright © 2023</Copyright>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
   </PropertyGroup>
 
   <!-- Information for the NuGet package -->
