@@ -1,4 +1,5 @@
 ﻿using Limbo.Umbraco.Seo.Manifests;
+using Limbo.Umbraco.Seo.Robots;
 using Limbo.Umbraco.Seo.Sitemaps;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -11,6 +12,7 @@ namespace Limbo.Umbraco.Seo.Composers {
     public class SeoComposer : IComposer {
 
         public void Compose(IUmbracoBuilder builder) {
+            builder.Services.AddUnique<IRobotsService, RobotsService>();
             builder.Services.AddUnique<ISitemapHelper, SitemapHelper>();
             builder.ManifestFilters().Append<SeoManifestFilter>();
         }
