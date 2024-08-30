@@ -23,7 +23,7 @@ namespace Limbo.Umbraco.Seo.Editors.Sitemaps {
         }
 
         public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
-            return EnumUtils.ParseEnum((source as string)!, SitemapChangeFrequency.Unspecified);
+            return EnumUtils.ParseEnum(source as string, SitemapChangeFrequency.Unspecified);
         }
 
     }

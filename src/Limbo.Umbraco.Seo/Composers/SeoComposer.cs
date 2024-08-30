@@ -19,7 +19,7 @@ namespace Limbo.Umbraco.Seo.Composers {
 
             builder.Services.AddUnique<ISiteAccessor, SiteAccessor>();
             builder.Services.AddUnique<IRobotsService, RobotsService>();
-            builder.Services.AddUnique<ISitemapHelper, SitemapHelper>();
+            builder.Services.AddUnique<ISitemapService, SitemapService>();
 
             builder.ManifestFilters().Append<SeoManifestFilter>();
 
