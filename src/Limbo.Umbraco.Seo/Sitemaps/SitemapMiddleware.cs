@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Skybrud.Essentials.Text;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
@@ -47,7 +48,7 @@ public class SitemapMiddleware {
 
         // Generate the XML for the sitemap
         StringBuilder builder = new();
-        await using (TextWriter writer = new StringWriter(builder)) {
+        await using (TextWriter writer = new StringWriterWithEncoding(builder, Encoding.UTF8)) {
             _sitemapService.ToXmlDocument(sitemap).Save(writer);
         }
 
