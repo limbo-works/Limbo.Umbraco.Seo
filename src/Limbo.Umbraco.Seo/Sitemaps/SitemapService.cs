@@ -221,8 +221,8 @@ public class SitemapService : ISitemapService {
     public XElement ToXmlElement(ISitemapItem item) {
 
         XElement xml = new(
-            SitemapConstants.XNamespace + SitemapConstants.Xml.Location,
-            new XElement(SitemapConstants.XNamespace + SitemapConstants.Xml.Url, item.Url),
+            SitemapConstants.XNamespace + SitemapConstants.Xml.Url,
+            new XElement(SitemapConstants.XNamespace + SitemapConstants.Xml.Location, item.Url),
             new XElement(SitemapConstants.XNamespace + SitemapConstants.Xml.LastModified, item.LastModified.ToString("yyyy-MM-dd"))
         );
 
