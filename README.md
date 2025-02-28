@@ -1,6 +1,6 @@
 # Limbo SEO
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v10/main/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
@@ -40,16 +40,16 @@
 
 ## Installation
 
-The Umbraco 10+ version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/10.0.0-beta002). To install the package, you can use either .NET CLI:
+The Umbraco 10+ version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/10.0.0). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 10.0.0-beta002
+dotnet add package Limbo.Umbraco.Seo --version 10.0.0
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 10.0.0-beta002
+Install-Package Limbo.Umbraco.Seo -Version 10.0.0
 ```
 
 **Umbraco 9**  
@@ -87,4 +87,4 @@ To make the sitemap appear at `/sitemap.xml` instead, you can add the following 
 </rule>
 ```
 
-Under the hood, the XML sitemap generation is handled by the `ISitemapHelper` interface. The default implementation of the interface is `SitemapHelper`, but implementation can be overridden using dependency injection.
+Under the hood, the XML sitemap generation is handled by the `ISitemapService` interface. The default implementation of the interface is `SitemapService`, but implementation can be overridden using dependency injection.
