@@ -1,13 +1,18 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Limbo.Umbraco.Seo.Constants;
 using Limbo.Umbraco.Seo.Robots.Models;
 using Limbo.Umbraco.Seo.Robots.Services;
 using Limbo.Umbraco.Seo.Security.Models;
 using Limbo.Umbraco.Seo.Security.Services;
+using Limbo.Umbraco.Seo.Sitemaps.Models;
+using Limbo.Umbraco.Seo.Sitemaps.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Skybrud.Essentials.Text;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Web;
 
@@ -42,6 +47,10 @@ public class SeoMiddleware {
 
             case SeoUrls.Security:
                 await HandleSecurityTxt(context);
+                return;
+
+            case SeoUrls.Sitemap:
+                await HandleSitemapXml(context);
                 return;
 
             default:
@@ -88,6 +97,32 @@ public class SeoMiddleware {
 
     }
 
+    protected virtual async Task HandleSitemapXml(HttpContext context) {
+
+        // Get a reference to the current sitemap service
+        ISitemapService sitemapService = context.RequestServices.GetRequiredService<ISitemapService>();
+
+        // Make sure we have an Umbraco context
+        using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
+
+        // Generate a new sitemap
+        ISitemapResult sitemap = sitemapService.BuildSitemap(context);
+
+        // Write to the log if building the sitemap failed
+        if (sitemap.Exception is not null) _logger.LogError(sitemap.Exception, "Failed building sitemap for {Domain}.", context.Request.Host);
+
+        // Generate the XML for the sitemap
+        StringBuilder builder = new();
+        await using (TextWriter writer = new StringWriterWithEncoding(builder, Encoding.UTF8)) {
+            sitemapService.ToXmlDocument(sitemap).Save(writer);
+        }
+        
+        // Return a content result with the XML
+        context.Response.StatusCode = (int) HttpStatusCode.OK;
+        context.Response.ContentType = "application/xml";
+        await context.Response.WriteAsync(builder.ToString());
+
+    }
     protected virtual async Task WritePlain(HttpContext context, HttpStatusCode statusCode, string? value) {
 
         context.Response.StatusCode = (int) statusCode;

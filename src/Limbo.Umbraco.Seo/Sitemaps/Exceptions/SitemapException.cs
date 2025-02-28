@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Limbo.Umbraco.Seo.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Exceptions;
 
 /// <summary>
 /// Exception class thrown if building a sitemap fails

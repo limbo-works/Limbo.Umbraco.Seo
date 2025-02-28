@@ -1,5 +1,4 @@
-﻿using Limbo.Umbraco.Seo.Robots;
-using Limbo.Umbraco.Seo.Security.Models;
+﻿using Limbo.Umbraco.Seo.Security.Models;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Http;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Limbo.Umbraco.Seo.Models.Sitemaps;
+using Limbo.Umbraco.Seo.Sitemaps.Models;
 using Skybrud.Essentials.Enums;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;

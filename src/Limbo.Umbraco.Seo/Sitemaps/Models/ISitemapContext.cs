@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Limbo.Umbraco.Seo.Sites;
 
-namespace Limbo.Umbraco.Seo.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Models;
 
 /// <summary>
 /// Interface a sitemap context.

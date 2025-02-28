@@ -1,6 +1,6 @@
 ﻿#pragma warning disable CS1591
 
-namespace Limbo.Umbraco.Seo.Models.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Models;
 
 /// <summary>
 /// Enum class representing the change frequency of a page.

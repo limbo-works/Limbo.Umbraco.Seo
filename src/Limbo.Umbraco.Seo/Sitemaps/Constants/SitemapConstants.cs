@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace Limbo.Umbraco.Seo.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Constants;
 
 /// <summary>
 /// Static class with various constants for building XML sitemaps.

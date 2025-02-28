@@ -1,7 +1,6 @@
 ﻿using System;
-using Limbo.Umbraco.Seo.Models.Sitemaps;
 
-namespace Limbo.Umbraco.Seo.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Models;
 
 /// <summary>
 /// Class representing a sitemap item.

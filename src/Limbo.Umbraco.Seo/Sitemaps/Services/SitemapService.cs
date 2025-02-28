@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Linq;
 using Limbo.Umbraco.Seo.Extensions;
-using Limbo.Umbraco.Seo.Models.Sitemaps;
+using Limbo.Umbraco.Seo.Sitemaps.Constants;
+using Limbo.Umbraco.Seo.Sitemaps.Exceptions;
+using Limbo.Umbraco.Seo.Sitemaps.Models;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -13,7 +15,7 @@ using Umbraco.Extensions;
 
 // ReSharper disable ConvertIfStatementToReturnStatement
 
-namespace Limbo.Umbraco.Seo.Sitemaps;
+namespace Limbo.Umbraco.Seo.Sitemaps.Services;
 
 /// <summary>
 /// Class representing the default implementation of the XML sitemap helper used by this package.
@@ -130,7 +132,7 @@ public class SitemapService : ISitemapService {
         try {
 
             // Run the same for all children
-            foreach (IPublishedContent child in node.ChildrenForAllCultures!) BuildSitemap(context, items, child);
+            foreach (IPublishedContent child in node.ChildrenForAllCultures) BuildSitemap(context, items, child);
 
         } catch (Exception ex) {
 

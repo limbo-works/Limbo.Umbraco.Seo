@@ -1,5 +1,5 @@
-﻿using Limbo.Umbraco.Seo.Models.Sitemaps;
-using Limbo.Umbraco.Seo.Sitemaps;
+﻿using Limbo.Umbraco.Seo.Sitemaps.Constants;
+using Limbo.Umbraco.Seo.Sitemaps.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
