@@ -26,6 +26,7 @@ public class SeoComposer : IComposer {
         builder.Services.Configure<UmbracoPipelineOptions>(options => {
             options.AddFilter(new UmbracoPipelineFilter("LimboSeo", prePipeline: applicationBuilder => {
                 applicationBuilder.UseMiddleware<RobotsMiddleware>();
+                applicationBuilder.UseMiddleware<SitemapMiddleware>();
             }));
         });
 
