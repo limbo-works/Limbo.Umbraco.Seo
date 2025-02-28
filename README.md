@@ -1,6 +1,6 @@
 # Limbo SEO
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v10/main/LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v13/main/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
@@ -40,17 +40,20 @@
 
 ## Installation
 
-The Umbraco 10+ version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/10.0.0). To install the package, you can use either .NET CLI:
+The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.0.0). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 10.0.0
+dotnet add package Limbo.Umbraco.Seo --version 13.0.0
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 10.0.0
+Install-Package Limbo.Umbraco.Seo -Version 13.0.0
 ```
+
+**Umbraco 10-12**  
+For the Umbraco 10 version of this package, see the [**v10/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v10/main) branch instead.
 
 **Umbraco 9**  
 For the Umbraco 9 version of this package, see the [**v2/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) branch instead.
