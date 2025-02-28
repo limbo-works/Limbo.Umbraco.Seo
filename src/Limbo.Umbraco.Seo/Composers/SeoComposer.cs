@@ -1,6 +1,6 @@
 ﻿using Limbo.Umbraco.Seo.Manifests;
 using Limbo.Umbraco.Seo.Middleware;
-using Limbo.Umbraco.Seo.Robots;
+using Limbo.Umbraco.Seo.Robots.Services;
 using Limbo.Umbraco.Seo.Security.Services;
 using Limbo.Umbraco.Seo.Sitemaps;
 using Limbo.Umbraco.Seo.Sites;
@@ -28,7 +28,6 @@ public class SeoComposer : IComposer {
 
         builder.Services.Configure<UmbracoPipelineOptions>(options => {
             options.AddFilter(new UmbracoPipelineFilter("LimboSeo", prePipeline: applicationBuilder => {
-                applicationBuilder.UseMiddleware<RobotsMiddleware>();
                 applicationBuilder.UseMiddleware<SeoMiddleware>();
                 applicationBuilder.UseMiddleware<SitemapMiddleware>();
             }));

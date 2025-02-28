@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using Limbo.Umbraco.Seo.Constants;
+using Limbo.Umbraco.Seo.Robots.Models;
+using Limbo.Umbraco.Seo.Robots.Services;
 using Limbo.Umbraco.Seo.Security.Models;
 using Limbo.Umbraco.Seo.Security.Services;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +36,10 @@ public class SeoMiddleware {
 
         switch (path) {
 
+            case SeoUrls.Robots:
+                await HandleRobotsTxt(context);
+                return;
+
             case SeoUrls.Security:
                 await HandleSecurityTxt(context);
                 return;
@@ -42,6 +49,24 @@ public class SeoMiddleware {
                 return;
 
         }
+
+    }
+
+    protected virtual async Task HandleRobotsTxt(HttpContext context) {
+
+        // Make sure we have an Umbraco context
+        using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
+
+        // Generate a new robots result
+        IRobotsResult result = context.RequestServices.GetRequiredService<IRobotsService>().GetRobots(context);
+
+        // Write to the log if building the security value failed
+        if (result.Exception is not null) {
+            _logger.LogError(result.Exception, "Failed generating robots.txt for {Domain}.", context.Request.Host);
+        }
+
+        // Write the result to the response
+        await WritePlain(context, result.StatusCode, result.Value);
 
     }
 
@@ -55,13 +80,19 @@ public class SeoMiddleware {
 
         // Write to the log if building the security value failed
         if (result.Exception is not null) {
-            _logger.LogError(result.Exception, "Failed building security.txt for {Domain}.", context.Request.Host);
+            _logger.LogError(result.Exception, "Failed generating security.txt for {Domain}.", context.Request.Host);
         }
 
-        // Return a content result with the XML
-        context.Response.StatusCode = (int) result.StatusCode;
+        // Write the result to the response
+        await WritePlain(context, result.StatusCode, result.Value);
+
+    }
+
+    protected virtual async Task WritePlain(HttpContext context, HttpStatusCode statusCode, string? value) {
+
+        context.Response.StatusCode = (int) statusCode;
         context.Response.ContentType = "text/plain";
-        await context.Response.WriteAsync(result.Value ?? string.Empty);
+        await context.Response.WriteAsync(value ?? string.Empty);
 
     }
 

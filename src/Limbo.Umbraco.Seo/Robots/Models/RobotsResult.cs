@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Limbo.Umbraco.Seo.Robots;
+namespace Limbo.Umbraco.Seo.Robots.Models;
 
 /// <summary>
 /// Class describing a robots result.

@@ -1,10 +1,11 @@
 ﻿using System.Net;
 using Limbo.Umbraco.Seo.Constants;
+using Limbo.Umbraco.Seo.Robots.Models;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Http;
 using Umbraco.Extensions;
 
-namespace Limbo.Umbraco.Seo.Robots;
+namespace Limbo.Umbraco.Seo.Robots.Services;
 
 /// <summary>
 /// Service for generating <c>robots.txt</c> files.

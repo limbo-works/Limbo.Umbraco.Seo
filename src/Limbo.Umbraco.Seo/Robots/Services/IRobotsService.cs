@@ -1,7 +1,8 @@
-﻿using Limbo.Umbraco.Seo.Sites;
+﻿using Limbo.Umbraco.Seo.Robots.Models;
+using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Http;
 
-namespace Limbo.Umbraco.Seo.Robots;
+namespace Limbo.Umbraco.Seo.Robots.Services;
 
 /// <summary>
 /// Interface descring a service for generating <c>robots.txt</c> files.
