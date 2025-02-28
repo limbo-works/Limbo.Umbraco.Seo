@@ -10,4 +10,9 @@ public class SeoProperties {
     /// </summary>
     public const string RobotsTxt = "robotsTxt";
 
+    /// <summary>
+    /// Gets the default alias of the security.txt property.
+    /// </summary>
+    public const string SecurityTxt = "securityTxt";
+
 }
