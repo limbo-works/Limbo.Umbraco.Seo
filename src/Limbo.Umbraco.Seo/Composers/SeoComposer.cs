@@ -11,30 +11,28 @@ using Umbraco.Extensions;
 
 #pragma warning disable CS1591
 
-namespace Limbo.Umbraco.Seo.Composers {
+namespace Limbo.Umbraco.Seo.Composers;
 
-    public class SeoComposer : IComposer {
+public class SeoComposer : IComposer {
 
-        public void Compose(IUmbracoBuilder builder) {
+    public void Compose(IUmbracoBuilder builder) {
 
-            builder.Services.AddUnique<ISiteAccessor, SiteAccessor>();
-            builder.Services.AddUnique<IRobotsService, RobotsService>();
-            builder.Services.AddUnique<ISitemapService, SitemapService>();
+        builder.Services.AddUnique<ISiteAccessor, SiteAccessor>();
+        builder.Services.AddUnique<IRobotsService, RobotsService>();
+        builder.Services.AddUnique<ISitemapService, SitemapService>();
 
-            builder.ManifestFilters().Append<SeoManifestFilter>();
+        builder.ManifestFilters().Append<SeoManifestFilter>();
 
-            builder.Services.Configure<UmbracoPipelineOptions>(options => {
-                options.AddFilter(new UmbracoPipelineFilter(
-                    "LimboSeo",
-                    applicationBuilder => {
-                        applicationBuilder.UseMiddleware<RobotsMiddleware>();
-                    },
-                    _ => { },
-                    _ => { }
-                ));
-            });
-
-        }
+        builder.Services.Configure<UmbracoPipelineOptions>(options => {
+            options.AddFilter(new UmbracoPipelineFilter(
+                "LimboSeo",
+                applicationBuilder => {
+                    applicationBuilder.UseMiddleware<RobotsMiddleware>();
+                },
+                _ => { },
+                _ => { }
+            ));
+        });
 
     }
 

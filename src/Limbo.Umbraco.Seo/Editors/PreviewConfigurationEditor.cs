@@ -4,12 +4,10 @@ using Umbraco.Cms.Core.Services;
 
 #pragma warning disable CS1591
 
-namespace Limbo.Umbraco.Seo.Editors {
+namespace Limbo.Umbraco.Seo.Editors;
 
-    public class PreviewConfigurationEditor : ConfigurationEditor<PreviewConfiguration> {
+public class PreviewConfigurationEditor : ConfigurationEditor<PreviewConfiguration> {
 
-        public PreviewConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) { }
-
-    }
+    public PreviewConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) { }
 
 }

@@ -1,28 +1,26 @@
 ﻿#pragma warning disable CS1591
 
-namespace Limbo.Umbraco.Seo.Models.Sitemaps {
+namespace Limbo.Umbraco.Seo.Models.Sitemaps;
 
-    /// <summary>
-    /// Enum class representing the change frequency of a page.
-    /// </summary>
-    public enum SitemapChangeFrequency {
+/// <summary>
+/// Enum class representing the change frequency of a page.
+/// </summary>
+public enum SitemapChangeFrequency {
 
-        Unspecified,
+    Unspecified,
 
-        Always,
+    Always,
 
-        Hourly,
+    Hourly,
 
-        Daily,
+    Daily,
 
-        Weekly,
+    Weekly,
 
-        Monthly,
+    Monthly,
 
-        Yearly,
+    Yearly,
 
-        Never
-
-    }
+    Never
 
 }

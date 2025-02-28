@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using Microsoft.AspNetCore.Http;
 
-namespace Limbo.Umbraco.Seo.Sitemaps; 
+namespace Limbo.Umbraco.Seo.Sitemaps;
 
 /// <summary>
 /// Interface describing a helper for building XML sitemaps.
