@@ -65,7 +65,7 @@ public class SitemapService : ISitemapService {
 
         try {
 
-            List<ISitemapItem> items = new();
+            List<ISitemapItem> items = [];
 
             // Start recursively building the sitemap
             BuildSitemap(context, items, context.Site.Content);

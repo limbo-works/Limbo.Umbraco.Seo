@@ -19,12 +19,12 @@ public class SitemapResult : ISitemapResult {
     /// <summary>
     /// Gets a list of the sitemap items.
     /// </summary>
-    public List<ISitemapItem>? Items { get; }
+    public IReadOnlyList<ISitemapItem>? Items { get; }
 
     /// <summary>
     /// Gets whether the building the sitemap was successful.
     /// </summary>
-    [MemberNotNullWhen(true, "Items")]
+    [MemberNotNullWhen(true, nameof(Items))]
     public bool IsSuccesful => Items is not null;
 
     #endregion

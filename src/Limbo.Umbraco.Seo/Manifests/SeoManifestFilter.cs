@@ -16,14 +16,14 @@ public class SeoManifestFilter : IManifestFilter {
             PackageName = SeoPackage.Name,
             Version = SeoPackage.InformationalVersion,
             BundleOptions = BundleOptions.Independent,
-            Scripts = new[] {
+            Scripts = [
                 $"/App_Plugins/{SeoPackage.Alias}/Scripts/Controllers/Preview.js",
                 $"/App_Plugins/{SeoPackage.Alias}/Scripts/Controllers/SitemapChangeFrequency.js",
                 $"/App_Plugins/{SeoPackage.Alias}/Scripts/Controllers/SitemapPriority.js"
-            },
-            Stylesheets = new[] {
+            ],
+            Stylesheets = [
                 $"/App_Plugins/{SeoPackage.Alias}/Styles/Styles.css"
-            }
+            ]
         };
 
         // The "PackageId" property isn't available prior to Umbraco 12, and since the package is build against
