@@ -44,16 +44,34 @@ public static class SitemapConstants {
     /// </summary>
     public static class Xml {
 
+        /// <summary>
+        /// Equals <c>changefreq</c>.
+        /// </summary>
         public const string ChangeFrequency = "changefreq";
 
+        /// <summary>
+        /// Equals <c>lastmod</c>.
+        /// </summary>
         public const string LastModified = "lastmod";
 
+        /// <summary>
+        /// Equals <c>loc</c>.
+        /// </summary>
         public const string Location = "loc";
 
+        /// <summary>
+        /// Equals <c>priority</c>.
+        /// </summary>
         public const string Priority = "priority";
 
+        /// <summary>
+        /// Equals <c>url</c>.
+        /// </summary>
         public const string Url = "url";
 
+        /// <summary>
+        /// Equals <c>urlset</c>.
+        /// </summary>
         public const string UrlSet = "urlset";
 
     }
