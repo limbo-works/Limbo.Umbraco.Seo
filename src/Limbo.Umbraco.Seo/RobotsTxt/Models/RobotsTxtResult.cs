@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
 
-namespace Limbo.Umbraco.Seo.Robots.Models;
+namespace Limbo.Umbraco.Seo.RobotsTxt.Models;
 
 /// <summary>
-/// Class describing a robots result.
+/// Class describing a <c>robots.txt</c> result.
 /// </summary>
-public class RobotsResult : IRobotsResult {
+public class RobotsTxtResult : IRobotsTxtResult {
 
     /// <summary>
     /// Gets the status code of the result.
@@ -33,7 +33,7 @@ public class RobotsResult : IRobotsResult {
     /// status is assumed to be <see cref="HttpStatusCode.OK"/>.
     /// </summary>
     /// <param name="robots">The <c>robots.txt</c> value.</param>
-    public RobotsResult(string robots) {
+    public RobotsTxtResult(string robots) {
         StatusCode = HttpStatusCode.OK;
         Value = robots;
     }
@@ -43,7 +43,7 @@ public class RobotsResult : IRobotsResult {
     /// used to represent failed results where a <c>robots.txt</c> value couldn't be determined.
     /// </summary>
     /// <param name="statusCode">The status code.</param>
-    public RobotsResult(HttpStatusCode statusCode) {
+    public RobotsTxtResult(HttpStatusCode statusCode) {
         StatusCode = statusCode;
     }
 
@@ -54,7 +54,7 @@ public class RobotsResult : IRobotsResult {
     /// </summary>
     /// <param name="statusCode">The status code.</param>
     /// <param name="exception">The exception, if any.</param>
-    public RobotsResult(HttpStatusCode statusCode, Exception exception) {
+    public RobotsTxtResult(HttpStatusCode statusCode, Exception exception) {
         StatusCode = statusCode;
         Exception = exception;
     }

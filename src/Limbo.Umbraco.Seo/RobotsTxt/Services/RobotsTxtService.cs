@@ -1,16 +1,16 @@
 ﻿using System.Net;
 using Limbo.Umbraco.Seo.Constants;
-using Limbo.Umbraco.Seo.Robots.Models;
+using Limbo.Umbraco.Seo.RobotsTxt.Models;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Http;
 using Umbraco.Extensions;
 
-namespace Limbo.Umbraco.Seo.Robots.Services;
+namespace Limbo.Umbraco.Seo.RobotsTxt.Services;
 
 /// <summary>
 /// Service for generating <c>robots.txt</c> files.
 /// </summary>
-public class RobotsService : IRobotsService {
+public class RobotsTxtService : IRobotsTxtService {
 
     private readonly ISiteAccessor _siteAccessor;
 
@@ -18,7 +18,7 @@ public class RobotsService : IRobotsService {
     /// Initializes a new instance based on the specified dependencies.
     /// </summary>
     /// <param name="siteAccessor">An instance of <see cref="ISiteAccessor"/>.</param>
-    public RobotsService(ISiteAccessor siteAccessor) {
+    public RobotsTxtService(ISiteAccessor siteAccessor) {
         _siteAccessor = siteAccessor;
     }
 
@@ -26,23 +26,23 @@ public class RobotsService : IRobotsService {
     /// Returns the <c>robots.txt</c> for the specified HTTP <paramref name="context"/>.
     /// </summary>
     /// <param name="context">The HTTP context.</param>
-    /// <returns>An instance of <see cref="IRobotsResult"/>.</returns>
-    public virtual IRobotsResult GetRobots(HttpContext context) {
-        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new RobotsResult(HttpStatusCode.NotFound) : GetRobots(site);
+    /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
+    public virtual IRobotsTxtResult GetRobots(HttpContext context) {
+        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new RobotsTxtResult(HttpStatusCode.NotFound) : GetRobots(site);
     }
 
     /// <summary>
     /// Returns the <c>robots.txt</c> for the specified <paramref name="site"/>.
     /// </summary>
     /// <param name="site">The site.</param>
-    /// <returns>An instance of <see cref="IRobotsResult"/>.</returns>
-    public virtual IRobotsResult GetRobots(ISite site) {
+    /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
+    public virtual IRobotsTxtResult GetRobots(ISite site) {
 
         // Get the robots value
         string robots = site.Content.Value<string>(SeoProperties.RobotsTxt) ?? string.Empty;
 
         // Return the result
-        return new RobotsResult(robots);
+        return new RobotsTxtResult(robots);
 
     }
 

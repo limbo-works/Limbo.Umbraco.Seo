@@ -7,9 +7,9 @@ namespace Limbo.Umbraco.Seo.Constants;
 /// </summary>
 public static class SeoUrls {
 
-    public const string Robots = "/robots.txt";
+    public const string RobotsTxt = "/robots.txt";
 
-    public const string Security = "/security.txt";
+    public const string SecurityTxt = "/security.txt";
 
     public const string Sitemap = "/sitemap.xml";
 

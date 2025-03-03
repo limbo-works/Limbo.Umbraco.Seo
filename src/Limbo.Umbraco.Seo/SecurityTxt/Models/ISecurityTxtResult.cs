@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
 
-namespace Limbo.Umbraco.Seo.Robots.Models;
+namespace Limbo.Umbraco.Seo.SecurityTxt.Models;
 
 /// <summary>
-/// Interface describing a robots result.
+/// Interface describing a <c>security.txt</c> result.
 /// </summary>
-public interface IRobotsResult {
+public interface ISecurityTxtResult {
 
     /// <summary>
     /// Gets the status code of the result.
@@ -24,7 +24,7 @@ public interface IRobotsResult {
     Exception? Exception { get; }
 
     /// <summary>
-    /// Gets the value for the <c>robots.txt</c> file.
+    /// Gets the value for the <c>security.txt</c> file.
     /// </summary>
     string? Value { get; }
 

@@ -1,7 +1,7 @@
 ﻿using Limbo.Umbraco.Seo.Manifests;
 using Limbo.Umbraco.Seo.Middleware;
-using Limbo.Umbraco.Seo.Robots.Services;
-using Limbo.Umbraco.Seo.Security.Services;
+using Limbo.Umbraco.Seo.RobotsTxt.Services;
+using Limbo.Umbraco.Seo.SecurityTxt.Services;
 using Limbo.Umbraco.Seo.Sitemaps.Services;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Builder;
@@ -20,8 +20,8 @@ public class SeoComposer : IComposer {
     public void Compose(IUmbracoBuilder builder) {
 
         builder.Services.AddUnique<ISiteAccessor, SiteAccessor>();
-        builder.Services.AddUnique<IRobotsService, RobotsService>();
-        builder.Services.AddUnique<ISecurityService, SecurityService>();
+        builder.Services.AddUnique<IRobotsTxtService, RobotsTxtService>();
+        builder.Services.AddUnique<ISecurityTxtService, SecurityTxtService>();
         builder.Services.AddUnique<ISitemapService, SitemapService>();
 
         builder.ManifestFilters().Append<SeoManifestFilter>();

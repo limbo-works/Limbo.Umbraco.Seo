@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
 
-namespace Limbo.Umbraco.Seo.Security.Models;
+namespace Limbo.Umbraco.Seo.SecurityTxt.Models;
 
 /// <summary>
 /// Class describing a security result.
 /// </summary>
-public class SecurityResult : ISecurityResult {
+public class SecurityTxtResult : ISecurityTxtResult {
 
     /// <summary>
     /// Gets the status code of the result.
@@ -33,7 +33,7 @@ public class SecurityResult : ISecurityResult {
     /// status is assumed to be <see cref="HttpStatusCode.OK"/>.
     /// </summary>
     /// <param name="security">The <c>security.txt</c> value.</param>
-    public SecurityResult(string security) {
+    public SecurityTxtResult(string security) {
         StatusCode = HttpStatusCode.OK;
         Value = security;
     }
@@ -43,7 +43,7 @@ public class SecurityResult : ISecurityResult {
     /// used to represent failed results where a <c>security.txt</c> value couldn't be determined.
     /// </summary>
     /// <param name="statusCode">The status code.</param>
-    public SecurityResult(HttpStatusCode statusCode) {
+    public SecurityTxtResult(HttpStatusCode statusCode) {
         StatusCode = statusCode;
     }
 
@@ -54,7 +54,7 @@ public class SecurityResult : ISecurityResult {
     /// </summary>
     /// <param name="statusCode">The status code.</param>
     /// <param name="exception">The exception, if any.</param>
-    public SecurityResult(HttpStatusCode statusCode, Exception exception) {
+    public SecurityTxtResult(HttpStatusCode statusCode, Exception exception) {
         StatusCode = statusCode;
         Exception = exception;
     }

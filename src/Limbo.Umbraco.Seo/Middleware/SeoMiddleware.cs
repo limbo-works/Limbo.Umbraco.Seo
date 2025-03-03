@@ -3,10 +3,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Limbo.Umbraco.Seo.Constants;
-using Limbo.Umbraco.Seo.Robots.Models;
-using Limbo.Umbraco.Seo.Robots.Services;
-using Limbo.Umbraco.Seo.Security.Models;
-using Limbo.Umbraco.Seo.Security.Services;
+using Limbo.Umbraco.Seo.RobotsTxt.Models;
+using Limbo.Umbraco.Seo.RobotsTxt.Services;
+using Limbo.Umbraco.Seo.SecurityTxt.Models;
+using Limbo.Umbraco.Seo.SecurityTxt.Services;
 using Limbo.Umbraco.Seo.Sitemaps.Models;
 using Limbo.Umbraco.Seo.Sitemaps.Services;
 using Microsoft.AspNetCore.Http;
@@ -41,11 +41,11 @@ public class SeoMiddleware {
 
         switch (path) {
 
-            case SeoUrls.Robots:
+            case SeoUrls.RobotsTxt:
                 await HandleRobotsTxt(context);
                 return;
 
-            case SeoUrls.Security:
+            case SeoUrls.SecurityTxt:
                 await HandleSecurityTxt(context);
                 return;
 
@@ -67,7 +67,7 @@ public class SeoMiddleware {
         using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
 
         // Generate a new robots result
-        IRobotsResult result = context.RequestServices.GetRequiredService<IRobotsService>().GetRobots(context);
+        IRobotsTxtResult result = context.RequestServices.GetRequiredService<IRobotsTxtService>().GetRobots(context);
 
         // Write to the log if building the security value failed
         if (result.Exception is not null) {
@@ -85,7 +85,7 @@ public class SeoMiddleware {
         using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
 
         // Generate a new security result
-        ISecurityResult result = context.RequestServices.GetRequiredService<ISecurityService>().GetSecurity(context);
+        ISecurityTxtResult result = context.RequestServices.GetRequiredService<ISecurityTxtService>().GetSecurity(context);
 
         // Write to the log if building the security value failed
         if (result.Exception is not null) {
@@ -116,13 +116,14 @@ public class SeoMiddleware {
         await using (TextWriter writer = new StringWriterWithEncoding(builder, Encoding.UTF8)) {
             sitemapService.ToXmlDocument(sitemap).Save(writer);
         }
-        
+
         // Return a content result with the XML
         context.Response.StatusCode = (int) HttpStatusCode.OK;
         context.Response.ContentType = "application/xml";
         await context.Response.WriteAsync(builder.ToString());
 
     }
+
     protected virtual async Task WritePlain(HttpContext context, HttpStatusCode statusCode, string? value) {
 
         context.Response.StatusCode = (int) statusCode;
