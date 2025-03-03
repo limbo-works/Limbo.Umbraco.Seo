@@ -1,16 +1,10 @@
 # Sitemaps
 
-The sitemap module isn't enabled by default. You enable it by adding the following line to your `Program.cs` file:
-
-```csharp
-app.UseMiddleware<SitemapMiddleware>();
-```
-
-The `SitemapMiddleware` class can be found in the `Limbo.Umbraco.Seo.Sitemaps` namespace. When enabled, the sitemap be found at `/sitemap.xml`.
+The package will generate a sitemap that is available `/sitemap.xml`, and it will list pages under the site node.
 
 ## Properties
 
-By default the sitemap module is backed by the `SitemapService` class, which looks for a number of properties that you can then use to control the sitemap:
+By default the sitemap is backed by the `SitemapService` class, which looks for a number of properties that you can then use to control the sitemap:
 
 - `hideFromSitemap`  
 Add a boolean value to the page. If this property is `true` for a given page, the page will be ignored in the sitemap.
