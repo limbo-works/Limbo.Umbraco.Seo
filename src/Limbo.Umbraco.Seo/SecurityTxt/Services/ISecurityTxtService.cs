@@ -14,13 +14,13 @@ public interface ISecurityTxtService {
     /// </summary>
     /// <param name="context">The HTTP context.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
-    ISecurityTxtResult GetSecurity(HttpContext context);
+    ISecurityTxtResult GetSecurityTxt(HttpContext context);
 
     /// <summary>
     /// Returns the <c>security.txt</c> for the specified <paramref name="site"/>.
     /// </summary>
     /// <param name="site">The site.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
-    ISecurityTxtResult GetSecurity(ISite site);
+    ISecurityTxtResult GetSecurityTxt(ISite site);
 
 }

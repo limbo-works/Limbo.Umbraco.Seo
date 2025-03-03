@@ -14,13 +14,13 @@ public interface IRobotsTxtService {
     /// </summary>
     /// <param name="context">The HTTP context.</param>
     /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
-    IRobotsTxtResult GetRobots(HttpContext context);
+    IRobotsTxtResult GetRobotsTxt(HttpContext context);
 
     /// <summary>
     /// Returns the <c>robots.txt</c> for the specified <paramref name="site"/>.
     /// </summary>
     /// <param name="site">The site.</param>
     /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
-    IRobotsTxtResult GetRobots(ISite site);
+    IRobotsTxtResult GetRobotsTxt(ISite site);
 
 }

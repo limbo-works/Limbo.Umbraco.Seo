@@ -27,8 +27,8 @@ public class SecurityTxtService : ISecurityTxtService {
     /// </summary>
     /// <param name="context">The HTTP context.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
-    public virtual ISecurityTxtResult GetSecurity(HttpContext context) {
-        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new SecurityTxtResult(HttpStatusCode.NotFound) : GetSecurity(site);
+    public virtual ISecurityTxtResult GetSecurityTxt(HttpContext context) {
+        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new SecurityTxtResult(HttpStatusCode.NotFound) : GetSecurityTxt(site);
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class SecurityTxtService : ISecurityTxtService {
     /// </summary>
     /// <param name="site">The site.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
-    public virtual ISecurityTxtResult GetSecurity(ISite site) {
+    public virtual ISecurityTxtResult GetSecurityTxt(ISite site) {
 
         // Get the robots value
         string robots = site.Content.Value<string>(SeoProperties.RobotsTxt) ?? string.Empty;

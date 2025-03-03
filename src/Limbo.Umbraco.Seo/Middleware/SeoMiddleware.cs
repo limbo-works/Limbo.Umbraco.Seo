@@ -67,7 +67,7 @@ public class SeoMiddleware {
         using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
 
         // Generate a new robots result
-        IRobotsTxtResult result = context.RequestServices.GetRequiredService<IRobotsTxtService>().GetRobots(context);
+        IRobotsTxtResult result = context.RequestServices.GetRequiredService<IRobotsTxtService>().GetRobotsTxt(context);
 
         // Write to the log if building the security value failed
         if (result.Exception is not null) {
@@ -85,7 +85,7 @@ public class SeoMiddleware {
         using UmbracoContextReference reference = _umbracoContextFactory.EnsureUmbracoContext();
 
         // Generate a new security result
-        ISecurityTxtResult result = context.RequestServices.GetRequiredService<ISecurityTxtService>().GetSecurity(context);
+        ISecurityTxtResult result = context.RequestServices.GetRequiredService<ISecurityTxtService>().GetSecurityTxt(context);
 
         // Write to the log if building the security value failed
         if (result.Exception is not null) {

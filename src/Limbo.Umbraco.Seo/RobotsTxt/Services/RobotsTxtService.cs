@@ -27,8 +27,8 @@ public class RobotsTxtService : IRobotsTxtService {
     /// </summary>
     /// <param name="context">The HTTP context.</param>
     /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
-    public virtual IRobotsTxtResult GetRobots(HttpContext context) {
-        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new RobotsTxtResult(HttpStatusCode.NotFound) : GetRobots(site);
+    public virtual IRobotsTxtResult GetRobotsTxt(HttpContext context) {
+        return !_siteAccessor.TryGetSite(context, out ISite? site) ? new RobotsTxtResult(HttpStatusCode.NotFound) : GetRobotsTxt(site);
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class RobotsTxtService : IRobotsTxtService {
     /// </summary>
     /// <param name="site">The site.</param>
     /// <returns>An instance of <see cref="IRobotsTxtResult"/>.</returns>
-    public virtual IRobotsTxtResult GetRobots(ISite site) {
+    public virtual IRobotsTxtResult GetRobotsTxt(ISite site) {
 
         // Get the robots value
         string robots = site.Content.Value<string>(SeoProperties.RobotsTxt) ?? string.Empty;
