@@ -1,0 +1,3 @@
+# Sitemap Change Frequency
+
+*TBD*
