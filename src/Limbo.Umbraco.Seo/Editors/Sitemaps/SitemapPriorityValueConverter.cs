@@ -1,4 +1,5 @@
 ﻿using System;
+using Skybrud.Essentials.Strings;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 
@@ -22,8 +23,8 @@ public class SitemapPriorityValueConverter : PropertyValueConverterBase {
 
     public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
         return source switch {
-            float _ => source,
-            string str => float.TryParse(str, out float result) ? result : default(float?),
+            float => source,
+            string str => StringUtils.TryParseFloat(str, out float result) ? result : default(float?),
             _ => default(float?)
         };
     }
