@@ -18,6 +18,8 @@
 
     $scope.model.value = $scope.model.value ? $scope.model.value : "0.5";
 
+    if ($scope.model.value === "1") $scope.model.value = "1.0";
+
     vm.priorities.forEach(function(p) {
         p.selected = p.value === $scope.model.value;
     });
