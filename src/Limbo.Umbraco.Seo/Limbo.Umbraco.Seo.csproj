@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>13.0.0</VersionPrefix>
+    <VersionPrefix>13.0.1</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
@@ -40,8 +40,6 @@
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials" Version="1.1.58" />
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.0" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" NoWarn="NU1902" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" NoWarn="NU1902" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" NoWarn="NU1902" />

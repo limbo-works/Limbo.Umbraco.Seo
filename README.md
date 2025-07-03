@@ -40,26 +40,26 @@
 
 ## Installation
 
-The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.0.0). To install the package, you can use either .NET CLI:
+### Umbraco 13
+
+The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.0.1). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 13.0.0
+dotnet add package Limbo.Umbraco.Seo --version 13.0.1
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 13.0.0
+Install-Package Limbo.Umbraco.Seo -Version 13.0.1
 ```
 
-**Umbraco 10-12**  
-For the Umbraco 10 version of this package, see the [**v10/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v10/main) branch instead.
+### Other versions of Umbraco
 
-**Umbraco 9**  
-For the Umbraco 9 version of this package, see the [**v2/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) branch instead.
+- ~~[**`v10/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v10/main) Umbraco 10, 11 and 12~~ <sub title="Umbraco 10, 11 and 12 have reached end-of-life"><sup>(EOL)</sup></sub>
+- ~~[**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) Umbraco 9~~ <sub title="Umbraco 9 has reached end-of-life"><sup>(EOL)</sup></sub>
+- ~~[**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) Umbraco 8~~ <sub title="Umbraco 8 has reached end-of-life"><sup>(EOL)</sup></sub>
 
-**Umbraco 8**  
-For the Umbraco 8 version of this package, see the [**v1/latest**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) branch instead.
 
 
 
