@@ -10,6 +10,11 @@ namespace Limbo.Umbraco.Seo.Sitemaps.Models;
 public interface ISitemapResult {
 
     /// <summary>
+    /// Gets the status of the sitemap build operation.
+    /// </summary>
+    public SitemapBuildStatus Status { get; }
+
+    /// <summary>
     /// Gets an instance of <see cref="Exception"/> if building the sitemap was unsuccessful.
     /// </summary>
     Exception? Exception { get; }
@@ -24,5 +29,10 @@ public interface ISitemapResult {
     /// </summary>
     [MemberNotNullWhen(true, nameof(Items))]
     bool IsSuccessful { get; }
+
+    /// <summary>
+    /// Gets an error message that will be returned to the "user".
+    /// </summary>
+    public string? Error { get; }
 
 }

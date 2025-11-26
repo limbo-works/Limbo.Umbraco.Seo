@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,8 +118,16 @@ public class SeoMiddleware {
             sitemapService.ToXmlDocument(sitemap).Save(writer);
         }
 
+        // Determine the status code
+        context.Response.StatusCode = sitemap.Status switch {
+            SitemapBuildStatus.Success => (int) HttpStatusCode.OK,
+            SitemapBuildStatus.Unauthorized => (int) HttpStatusCode.Unauthorized,
+            SitemapBuildStatus.NotFound => (int) HttpStatusCode.NotFound,
+            SitemapBuildStatus.Error => (int) HttpStatusCode.InternalServerError,
+            _ => context.Response.StatusCode
+        };
+
         // Return a content result with the XML
-        context.Response.StatusCode = (int) HttpStatusCode.OK;
         context.Response.ContentType = "application/xml";
         await context.Response.WriteAsync(builder.ToString());
 

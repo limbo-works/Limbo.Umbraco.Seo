@@ -196,10 +196,10 @@ public class SitemapService : ISitemapService {
 
         XElement root;
 
-        if (sitemap.Exception != null || sitemap.Items == null) {
+        if (!sitemap.IsSuccessful) {
 
             // Initialize a new <e> element as root
-            root = new XElement(SitemapConstants.XNamespace + "e", "Error");
+            root = new XElement(SitemapConstants.XNamespace + "e", sitemap.Error ?? "Error");
 
         } else {
 
