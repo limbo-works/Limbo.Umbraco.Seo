@@ -42,16 +42,16 @@
 
 ### Umbraco 13
 
-The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.0.1). To install the package, you can use either .NET CLI:
+The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.1.0). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 13.0.1
+dotnet add package Limbo.Umbraco.Seo --version 13.1.0
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 13.0.1
+Install-Package Limbo.Umbraco.Seo -Version 13.1.0
 ```
 
 ### Other versions of Umbraco
