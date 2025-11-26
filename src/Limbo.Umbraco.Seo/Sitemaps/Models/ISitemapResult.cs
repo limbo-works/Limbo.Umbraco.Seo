@@ -23,6 +23,6 @@ public interface ISitemapResult {
     /// Gets whether the building the sitemap was successful.
     /// </summary>
     [MemberNotNullWhen(true, nameof(Items))]
-    bool IsSuccesful { get; }
+    bool IsSuccessful { get; }
 
 }

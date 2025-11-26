@@ -25,7 +25,7 @@ public class SitemapResult : ISitemapResult {
     /// Gets whether the building the sitemap was successful.
     /// </summary>
     [MemberNotNullWhen(true, nameof(Items))]
-    public bool IsSuccesful => Items is not null;
+    public bool IsSuccessful => Items is not null;
 
     #endregion
 
