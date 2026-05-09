@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 
@@ -23,8 +24,8 @@ public class SitemapPriorityValueConverter : PropertyValueConverterBase {
     public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
         return source switch {
             float _ => source,
-            string str => float.TryParse(str, out float result) ? result : default(float?),
-            _ => default(float?)
+            string str => float.TryParse(str, CultureInfo.InvariantCulture, out float result) ? result : null,
+            _ => null
         };
     }
 

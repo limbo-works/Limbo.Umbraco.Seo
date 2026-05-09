@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.Seo.Sitemaps.Constants;
+﻿using System.Globalization;
+using Limbo.Umbraco.Seo.Sitemaps.Constants;
 using Limbo.Umbraco.Seo.Sitemaps.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
@@ -47,7 +48,7 @@ public static class PublishedContentExtensions {
     /// <param name="content">The content node.</param>
     /// <returns>The sitemap priority of <paramref name="content"/>.</returns>
     public static float GetSitemapPriority(this IPublishedContent? content) {
-        return content?.Value<float>(SitemapConstants.Properties.Priority) ?? 0.5f;
+        return content?.Value<float?>(SitemapConstants.Properties.Priority) ?? 0.5f;
     }
 
     /// <summary>
@@ -70,7 +71,7 @@ public static class PublishedContentExtensions {
                 return true;
 
             case string str:
-                return float.TryParse(str, out result);
+                return float.TryParse(str, CultureInfo.InvariantCulture, out result);
 
             default:
                 return false;
@@ -99,7 +100,7 @@ public static class PublishedContentExtensions {
                 return true;
 
             case string str:
-                if (!float.TryParse(str, out float priority)) return false;
+                if (!float.TryParse(str, CultureInfo.InvariantCulture, out float priority)) return false;
                 result = priority;
                 return true;
 
