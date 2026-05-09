@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 namespace Limbo.Umbraco.Seo.SecurityTxt.Services;
 
 /// <summary>
-/// Interface descring a service for generating <c>security.txt</c> files.
+/// Interface describing a service for generating <c>security.txt</c> files.
 /// </summary>
 public interface ISecurityTxtService {
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 namespace Limbo.Umbraco.Seo.RobotsTxt.Services;
 
 /// <summary>
-/// Interface descring a service for generating <c>robots.txt</c> files.
+/// Interface describing a service for generating <c>robots.txt</c> files.
 /// </summary>
 public interface IRobotsTxtService {
 

@@ -49,6 +49,6 @@ public static class SeoPackage {
     /// <summary>
     /// Gets the URL of the documentation for this package.
     /// </summary>
-    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.seo/v10/docs/";
+    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.seo/v13/docs/";
 
 }
