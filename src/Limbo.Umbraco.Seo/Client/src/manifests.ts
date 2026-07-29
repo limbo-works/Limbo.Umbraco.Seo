@@ -1,7 +1,10 @@
 import {
     LIMBO_SEO_PREVIEW_ALIAS,
+    LIMBO_SEO_PREVIEW_UI_ALIAS,
     LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_ALIAS,
-    LIMBO_SEO_SITEMAP_PRIORITY_ALIAS
+    LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_UI_ALIAS,
+    LIMBO_SEO_SITEMAP_PRIORITY_ALIAS,
+    LIMBO_SEO_SITEMAP_PRIORITY_UI_ALIAS
 } from './constants.js';
 
 /**
@@ -9,8 +12,12 @@ import {
  *
  * Each property editor is declared twice: once as a `propertyEditorSchema`, which mirrors the C#
  * `DataEditor` and owns the data type configuration, and once as a `propertyEditorUi`, which owns
- * the element an editor actually interacts with. The `settings.properties` aliases below must match
- * the `[ConfigurationField]` aliases on the matching C# configuration class.
+ * the element an editor actually interacts with. The two must use *different* aliases - the
+ * extension registry keys on alias alone, so a schema and a UI sharing one means the second
+ * registration is dropped with an "already registered" error and the editor never shows up.
+ *
+ * The `settings.properties` aliases below must match the `[ConfigurationField]` aliases on the
+ * matching C# configuration class.
  */
 export const manifests: Array<UmbExtensionManifest> = [
 
@@ -31,7 +38,7 @@ export const manifests: Array<UmbExtensionManifest> = [
         alias: LIMBO_SEO_PREVIEW_ALIAS,
         name: 'Limbo SEO Preview',
         meta: {
-            defaultPropertyEditorUiAlias: LIMBO_SEO_PREVIEW_ALIAS,
+            defaultPropertyEditorUiAlias: LIMBO_SEO_PREVIEW_UI_ALIAS,
             settings: {
                 properties: [
                     {
@@ -61,7 +68,7 @@ export const manifests: Array<UmbExtensionManifest> = [
     },
     {
         type: 'propertyEditorUi',
-        alias: LIMBO_SEO_PREVIEW_ALIAS,
+        alias: LIMBO_SEO_PREVIEW_UI_ALIAS,
         name: 'Limbo SEO Preview',
         element: () => import('./property-editors/preview.element.js'),
         meta: {
@@ -81,12 +88,12 @@ export const manifests: Array<UmbExtensionManifest> = [
         // No settings: SitemapFrequencyEditor deliberately doesn't expose a configuration editor,
         // matching the Umbraco 13 version of this package.
         meta: {
-            defaultPropertyEditorUiAlias: LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_ALIAS
+            defaultPropertyEditorUiAlias: LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_UI_ALIAS
         }
     },
     {
         type: 'propertyEditorUi',
-        alias: LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_ALIAS,
+        alias: LIMBO_SEO_SITEMAP_CHANGE_FREQUENCY_UI_ALIAS,
         name: 'Limbo Sitemap Change Frequency',
         element: () => import('./property-editors/sitemap-change-frequency.element.js'),
         meta: {
@@ -104,12 +111,12 @@ export const manifests: Array<UmbExtensionManifest> = [
         alias: LIMBO_SEO_SITEMAP_PRIORITY_ALIAS,
         name: 'Limbo Sitemap Priority',
         meta: {
-            defaultPropertyEditorUiAlias: LIMBO_SEO_SITEMAP_PRIORITY_ALIAS
+            defaultPropertyEditorUiAlias: LIMBO_SEO_SITEMAP_PRIORITY_UI_ALIAS
         }
     },
     {
         type: 'propertyEditorUi',
-        alias: LIMBO_SEO_SITEMAP_PRIORITY_ALIAS,
+        alias: LIMBO_SEO_SITEMAP_PRIORITY_UI_ALIAS,
         name: 'Limbo Sitemap Priority',
         element: () => import('./property-editors/sitemap-priority.element.js'),
         meta: {

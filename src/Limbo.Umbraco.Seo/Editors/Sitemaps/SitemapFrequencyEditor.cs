@@ -23,7 +23,8 @@ public class SitemapFrequencyEditor : DataEditor {
     /// <summary>
     /// Gets the alias of the client side property editor UI of this editor.
     /// </summary>
-    public const string EditorUiAlias = EditorAlias;
+    /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewEditor.EditorUiAlias"/>.</remarks>
+    public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapChangeFrequency";
 
     #endregion
 

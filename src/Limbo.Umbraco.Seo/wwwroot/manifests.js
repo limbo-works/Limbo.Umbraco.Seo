@@ -1,4 +1,4 @@
-const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequency", t = "Limbo.Umbraco.Seo.SitemapPriority", o = [
+const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequency", o = "Limbo.Umbraco.Seo.SitemapPriority", t = "Limbo.Umbraco.Seo.PropertyEditorUi.Preview", r = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapChangeFrequency", a = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapPriority", p = [
   "",
   "always",
   "hourly",
@@ -7,7 +7,7 @@ const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequ
   "monthly",
   "yearly",
   "never"
-], r = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], a = 0.5, p = [
+], m = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], s = 0.5, l = [
   // Localization
   {
     type: "localization",
@@ -22,7 +22,7 @@ const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequ
     alias: e,
     name: "Limbo SEO Preview",
     meta: {
-      defaultPropertyEditorUiAlias: e,
+      defaultPropertyEditorUiAlias: t,
       settings: {
         properties: [
           {
@@ -52,7 +52,7 @@ const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequ
   },
   {
     type: "propertyEditorUi",
-    alias: e,
+    alias: t,
     name: "Limbo SEO Preview",
     element: () => import("./preview.element.js"),
     meta: {
@@ -70,12 +70,12 @@ const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequ
     // No settings: SitemapFrequencyEditor deliberately doesn't expose a configuration editor,
     // matching the Umbraco 13 version of this package.
     meta: {
-      defaultPropertyEditorUiAlias: i
+      defaultPropertyEditorUiAlias: r
     }
   },
   {
     type: "propertyEditorUi",
-    alias: i,
+    alias: r,
     name: "Limbo Sitemap Change Frequency",
     element: () => import("./sitemap-change-frequency.element.js"),
     meta: {
@@ -88,29 +88,29 @@ const e = "Limbo.Umbraco.Seo.Preview", i = "Limbo.Umbraco.Seo.SitemapChangeFrequ
   // Sitemap priority
   {
     type: "propertyEditorSchema",
-    alias: t,
+    alias: o,
     name: "Limbo Sitemap Priority",
     meta: {
-      defaultPropertyEditorUiAlias: t
+      defaultPropertyEditorUiAlias: a
     }
   },
   {
     type: "propertyEditorUi",
-    alias: t,
+    alias: a,
     name: "Limbo Sitemap Priority",
     element: () => import("./sitemap-priority.element.js"),
     meta: {
       label: "Limbo Sitemap Priority",
       icon: "icon-caps-lock",
       group: "Limbo",
-      propertyEditorSchemaAlias: t
+      propertyEditorSchemaAlias: o
     }
   }
 ];
 export {
-  o as S,
-  r as a,
-  a as b,
-  p as m
+  p as S,
+  m as a,
+  s as b,
+  l as m
 };
 //# sourceMappingURL=manifests.js.map

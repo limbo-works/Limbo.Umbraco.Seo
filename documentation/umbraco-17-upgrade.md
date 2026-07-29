@@ -252,3 +252,21 @@ The package has **not** been run inside a live Umbraco 17 instance. The followin
 - The three property editors rendering and saving in the backoffice, including on a variant (culture-aware) document. Worth covering specifically: saving priority `0.5` and priority `0.0`, an unsaved property of each type, and a property marked mandatory — these are the paths the review changed, and they are validated by the compiler but not by a running backoffice.
 - Upgrading a site that already has v13 data types, to confirm the `EditorUiAlias` migration lands on the aliases this package registers.
 - `/sitemap.xml`, `/robots.txt` and `/security.txt` on a multi-site install, to confirm the switch to the published domain cache resolves the same sites as `IDomainService` did.
+
+
+## Output from claude code review session
+Fixed (7):
+1. csproj:45 — Umbraco range [17.0.0,17.9.9) blocked 17.10+ → 17.999
+2. release.bat/debug.bat — no errorlevel check after npm; a failed tsc/vite packed a stale (or emptied) bundle → added exit /b 1
+3. SiteAccessor.cs — GetRequiredUmbracoContext() moved to top of TryGetSite, could throw instead of returning false → TryGetUmbracoContext
+4. Sitemap priority — Lit editor now submits a JSON number, but converter/extensions only handled float/string → added double/decimal (priority would silently vanish from sitemap)
+5. preview.element.ts — unguarded await in alias loop; stale variant could win the observe race → generation counter
+6. SeoPackage.cs:52 — docs URL still v13
+7. umbraco-package.json — dangling $schema path
+
+Left alone (flagged):
+- Manifest version hardcoded 17.0.0 in 2 files (was auto from assembly via deleted SeoManifestFilter) — needs MSBuild rewrite, your call
+- .js.map sourcemaps now ship in nupkg (~48 KB) — behaviour change, possibly intended
+- SitemapService.IgnoreNode:96 — TemplateId <= 0 false when null; pre-existing
+
+Post-fix: build 0 errors/0 warnings, tsc --noEmit clean, pack emits 13 static assets.

@@ -28,10 +28,12 @@ public class PreviewEditor : DataEditor {
     /// <summary>
     /// Gets the alias of the client side property editor UI of this editor.
     /// </summary>
-    /// <remarks>The UI alias is deliberately identical to <see cref="EditorAlias"/>, as this is the
-    /// value Umbraco's data type migration assigns to <c>EditorUiAlias</c> when a site is upgraded
-    /// from Umbraco 13.</remarks>
-    public const string EditorUiAlias = EditorAlias;
+    /// <remarks>The UI alias must differ from <see cref="EditorAlias"/>: the backoffice extension
+    /// registry requires aliases to be unique across all extension types, so a schema and its UI
+    /// sharing one alias means the UI is never registered. Data types carried over from Umbraco 13
+    /// are pointed at this alias by
+    /// <see cref="Migrations.UpdatePropertyEditorUiAliases"/>.</remarks>
+    public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.Preview";
 
     #endregion
 
