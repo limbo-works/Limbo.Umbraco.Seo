@@ -40,22 +40,25 @@
 
 ## Installation
 
-### Umbraco 13
+### Umbraco 17
 
-The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/13.1.1). To install the package, you can use either .NET CLI:
+The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/17.0.0-alpha000), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 13.1.1
+dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha000
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 13.1.1
+Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha000
 ```
+
+Since this is a prerelease, an explicit version (or `--prerelease`) is required — NuGet won't resolve it otherwise.
 
 ### Other versions of Umbraco
 
+- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v13/main) Umbraco 13
 - ~~[**`v10/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v10/main) Umbraco 10, 11 and 12~~ <sub title="Umbraco 10, 11 and 12 have reached end-of-life"><sup>(EOL)</sup></sub>
 - ~~[**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v2/main) Umbraco 9~~ <sub title="Umbraco 9 has reached end-of-life"><sup>(EOL)</sup></sub>
 - ~~[**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.Seo/tree/v1/main) Umbraco 8~~ <sub title="Umbraco 8 has reached end-of-life"><sup>(EOL)</sup></sub>
@@ -77,17 +80,32 @@ Install-Package Limbo.Umbraco.Seo -Version 13.1.1
 
 ## Usage
 
-### Sitemap
+### Sitemap, robots.txt and security.txt
 
-The package contains a WebAPI controller, which by default can be accessed at `/umbraco/api/Sitemap/XmlSitemap`. The controller outputs the XML sitemap for the site matching the inbound domain, or an error if the domain isn't recognized.
+The package registers a middleware that serves three files for the site matching the inbound domain:
 
-To make the sitemap appear at `/sitemap.xml` instead, you can add the following IIS rewrite rule:
+| URL | Source |
+|-----|--------|
+| `/sitemap.xml` | Built by walking the content tree below the site root |
+| `/robots.txt` | The `robotsTxt` property on the site root |
+| `/security.txt` | The `securityTxt` property on the site root |
 
-```xml
-<rule name="sitemap" stopProcessing="true" patternSyntax="ExactMatch">
-  <match url="sitemap.xml" />
-  <action type="Rewrite" url="/umbraco/api/sitemap/XmlSitemap" appendQueryString="false" redirectType="Found" statusCode="200" />
-</rule>
+Under the hood these are handled by the `ISitemapService`, `IRobotsTxtService` and `ISecurityTxtService` interfaces. The default implementations are `SitemapService`, `RobotsTxtService` and `SecurityTxtService`, and each can be replaced through dependency injection. `SitemapService` in particular exposes virtual `IgnoreNode`, `IgnoreChildren` and `CreateItem` methods, so subclassing it is usually enough to customise which pages end up in the sitemap.
+
+<br /><br />
+
+## Development
+
+The C# project builds on its own:
+
+```
+dotnet build src/Limbo.Umbraco.Seo
 ```
 
-Under the hood, the XML sitemap generation is handled by the `ISitemapService` interface. The default implementation of the interface is `SitemapService`, but implementation can be overridden using dependency injection.
+The backoffice extensions are a Vite/TypeScript project under `src/Limbo.Umbraco.Seo/Client`. Its build output is written to `src/Limbo.Umbraco.Seo/wwwroot` and is committed to the repository, so you only need to rebuild it after changing anything under `Client/src`:
+
+```
+cd src/Limbo.Umbraco.Seo/Client
+npm ci
+npm run build
+```

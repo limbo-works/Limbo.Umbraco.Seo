@@ -131,8 +131,10 @@ public class SitemapService : ISitemapService {
 
         try {
 
-            // Run the same for all children
-            foreach (IPublishedContent child in node.ChildrenForAllCultures) BuildSitemap(context, items, child);
+            // Run the same for all children. "ChildrenForAllCultures" was removed in Umbraco 14;
+            // passing "*" as the culture is the replacement for enumerating across all cultures.
+            // [CHANGE: Umbraco 17 upgrade] Related: Sites/SiteAccessor.cs, Editors/PreviewEditor.cs
+            foreach (IPublishedContent child in node.Children("*")) BuildSitemap(context, items, child);
 
         } catch (Exception ex) {
 

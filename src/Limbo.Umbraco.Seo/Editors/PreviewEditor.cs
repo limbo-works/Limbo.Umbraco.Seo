@@ -1,19 +1,17 @@
-﻿using Umbraco.Cms.Core.IO;
+using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
-using Umbraco.Cms.Core.Services;
 
 #pragma warning disable CS1591
 
 namespace Limbo.Umbraco.Seo.Editors;
 
-[DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView,
-    ValueType = ValueTypes.String,
-    Group = "Limbo",
-    Icon = "icon-chart color-limbo")]
+// [CHANGE: Umbraco 17 upgrade - property editor schema/UI split] Related: Editors/Sitemaps/SitemapFrequencyEditor.cs, Editors/Sitemaps/SitemapPriorityEditor.cs, Composers/SeoComposer.cs, Client/src/manifests.ts
+// The name, icon, group and view of the editor are no longer declared here. From Umbraco 14 and
+// onwards they belong to the "propertyEditorUi" manifest in "Client/src/manifests.ts".
+[DataEditor(EditorAlias, ValueType = ValueTypes.String)]
 public class PreviewEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
-    private readonly IEditorConfigurationParser _editorConfigurationParser;
 
     #region Constants
 
@@ -28,17 +26,19 @@ public class PreviewEditor : DataEditor {
     public const string EditorAlias = "Limbo.Umbraco.Seo.Preview";
 
     /// <summary>
-    /// Gets the URL of the view of the editor.
+    /// Gets the alias of the client side property editor UI of this editor.
     /// </summary>
-    public const string EditorView = "/App_Plugins/Limbo.Umbraco.Seo/Views/Preview.html";
+    /// <remarks>The UI alias is deliberately identical to <see cref="EditorAlias"/>, as this is the
+    /// value Umbraco's data type migration assigns to <c>EditorUiAlias</c> when a site is upgraded
+    /// from Umbraco 13.</remarks>
+    public const string EditorUiAlias = EditorAlias;
 
     #endregion
 
     #region Constructors
 
-    public PreviewEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(dataValueEditorFactory) {
+    public PreviewEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
         _ioHelper = ioHelper;
-        _editorConfigurationParser = editorConfigurationParser;
     }
 
     #endregion
@@ -46,7 +46,7 @@ public class PreviewEditor : DataEditor {
     #region member methods
 
     protected override IConfigurationEditor CreateConfigurationEditor() {
-        return new PreviewConfigurationEditor(_ioHelper, _editorConfigurationParser);
+        return new PreviewConfigurationEditor(_ioHelper);
     }
 
     #endregion

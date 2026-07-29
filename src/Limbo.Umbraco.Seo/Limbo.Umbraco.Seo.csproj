@@ -3,18 +3,25 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>13.1.1</VersionPrefix>
+    <VersionPrefix>17.0.0</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
+    <!--
+      Release builds ship as a prerelease: "17.0.0-alpha000". Drop this line (or bump the suffix)
+      when the Umbraco 17 version is ready to go out as a stable release.
+      [CHANGE: release packages are published as prereleases] Related: release.bat, README.md, documentation/umbraco-17-upgrade.md
+    -->
+    <VersionSuffix Condition="'$(Configuration)'=='Release'">alpha000</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
-    <Description>SEO package for Umbraco 13.</Description>
+    <Description>SEO package for Umbraco 17.</Description>
     <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
   </PropertyGroup>
 
@@ -22,7 +29,7 @@
   <PropertyGroup>
     <PackageTags>Skybrud, Limbo, Umbraco, Seo, Sitemap, Content, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v13/</PackageProjectUrl>
+    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v17/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</RepositoryUrl>
@@ -31,32 +38,31 @@
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/" />
-    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/docs/v13/" />
+    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.Seo" />
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.seo" />
   </ItemGroup>
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.67" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.68" />
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.2" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" NoWarn="NU1902" />
+    <!-- [CHANGE: "17.9.9" excluded Umbraco 17.10 and up - "17.999" covers every 17.x minor, as "13.999" did for v13] Related: release.bat, debug.bat, documentation/umbraco-17-upgrade.md -->
+    <PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.999)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[17.0.0,17.999)" NoWarn="NU1902" />
   </ItemGroup>
 
-  <!-- Include backoffice assets -->
+  <!--
+    The backoffice client is a Vite/TypeScript project under "Client". Its build output is written to
+    "wwwroot", which the Razor SDK exposes as static web assets under "App_Plugins/Limbo.Umbraco.Seo".
+    Everything below "Client" is excluded so that node_modules and TypeScript sources never end up in
+    the NuGet package.
+  -->
   <ItemGroup>
-    <Content Remove="wwwroot\**\*" />
-    <Content Include="wwwroot\**\*.html" />
-    <Content Include="wwwroot\**\*.js" />
-    <Content Include="wwwroot\Lang\*.xml" />
-    <Content Include="wwwroot\Styles\Styles.css">
-      <DependentUpon>Styles.less</DependentUpon>
-    </Content>
-    <Content Remove="compilerconfig.json" />
-    <None Include="wwwroot\**\*.less" />
-    <None Include="compilerconfig.json" />
+    <Content Remove="Client\**" />
+    <None Remove="Client\**" />
+    <Compile Remove="Client\**" />
+    <EmbeddedResource Remove="Client\**" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->

@@ -1,5 +1,4 @@
-﻿using Limbo.Umbraco.Seo.Manifests;
-using Limbo.Umbraco.Seo.Middleware;
+﻿using Limbo.Umbraco.Seo.Middleware;
 using Limbo.Umbraco.Seo.RobotsTxt.Services;
 using Limbo.Umbraco.Seo.SecurityTxt.Services;
 using Limbo.Umbraco.Seo.Sitemaps.Services;
@@ -24,7 +23,8 @@ public class SeoComposer : IComposer {
         builder.Services.AddUnique<ISecurityTxtService, SecurityTxtService>();
         builder.Services.AddUnique<ISitemapService, SitemapService>();
 
-        builder.ManifestFilters().Append<SeoManifestFilter>();
+        // [CHANGE: Umbraco 17 upgrade - IManifestFilter was removed in v14] Related: Editors/PreviewEditor.cs, Client/public/umbraco-package.json
+        // Backoffice assets are now registered through "wwwroot/umbraco-package.json" instead.
 
         builder.Services.Configure<UmbracoPipelineOptions>(options => {
             options.AddFilter(new UmbracoPipelineFilter("LimboSeo", prePipeline: applicationBuilder => {

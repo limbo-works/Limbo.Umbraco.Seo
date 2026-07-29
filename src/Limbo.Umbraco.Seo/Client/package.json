@@ -1,0 +1,18 @@
+{
+  "name": "limbo-umbraco-seo",
+  "version": "17.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Backoffice client for the Limbo SEO package for Umbraco 17.",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "watch": "vite build --watch",
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@umbraco-cms/backoffice": "^17.5.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.7"
+  }
+}

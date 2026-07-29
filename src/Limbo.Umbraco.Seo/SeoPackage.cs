@@ -49,6 +49,7 @@ public static class SeoPackage {
     /// <summary>
     /// Gets the URL of the documentation for this package.
     /// </summary>
-    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.seo/v13/docs/";
+    // [CHANGE: Umbraco 17 upgrade - the v13 documentation URL was missed when the csproj metadata was retargeted] Related: Limbo.Umbraco.Seo.csproj, Sites/SiteAccessor.cs
+    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.seo/v17/docs/";
 
 }
