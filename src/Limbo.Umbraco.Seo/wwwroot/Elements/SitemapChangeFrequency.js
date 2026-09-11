@@ -3,7 +3,7 @@ import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import { UmbChangeEvent } from "@umbraco-cms/backoffice/event";
 import { UMB_VALIDATION_EMPTY_LOCALIZATION_KEY, UmbFormControlMixin } from "@umbraco-cms/backoffice/validation";
 
-import { SITEMAP_CHANGE_FREQUENCIES } from "../constants.js";
+import { SITEMAP_CHANGE_FREQUENCIES } from "@limbo/seo/constants";
 
 const LimboSeoSitemapChangeFrequencyElementBase = UmbFormControlMixin(
     UmbLitElement,

@@ -3,7 +3,7 @@ import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import { UmbChangeEvent } from "@umbraco-cms/backoffice/event";
 import { UMB_VALIDATION_EMPTY_LOCALIZATION_KEY, UmbFormControlMixin } from "@umbraco-cms/backoffice/validation";
 
-import { SITEMAP_DEFAULT_PRIORITY, SITEMAP_PRIORITIES } from "../constants.js";
+import { SITEMAP_DEFAULT_PRIORITY, SITEMAP_PRIORITIES } from "@limbo/seo/constants";
 
 const LimboSeoSitemapPriorityElementBase = UmbFormControlMixin(
     UmbLitElement,
