@@ -3,18 +3,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
     <Nullable>enable</Nullable>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>13.1.1</VersionPrefix>
+    <VersionPrefix>17.0.0-alpha000</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
-    <Description>SEO package for Umbraco 13.</Description>
+    <Description>SEO package for Umbraco 17.</Description>
     <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
   </PropertyGroup>
 
@@ -22,7 +23,7 @@
   <PropertyGroup>
     <PackageTags>Skybrud, Limbo, Umbraco, Seo, Sitemap, Content, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v13/</PackageProjectUrl>
+    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.seo/v17/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.Seo</RepositoryUrl>
@@ -30,33 +31,25 @@
 
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
+    <AssemblyMetadata Include="Authors" Value="$(Authors)" />
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/" />
-    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/docs/v13/" />
+    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.Seo" />
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.seo" />
   </ItemGroup>
 
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.67" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.69" />
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.2" />
-    <PackageReference Include="Umbraco.Cms.Core" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,13.999)" NoWarn="NU1902" />
-  </ItemGroup>
-
-  <!-- Include backoffice assets -->
-  <ItemGroup>
-    <Content Remove="wwwroot\**\*" />
-    <Content Include="wwwroot\**\*.html" />
-    <Content Include="wwwroot\**\*.js" />
-    <Content Include="wwwroot\Lang\*.xml" />
-    <Content Include="wwwroot\Styles\Styles.css">
-      <DependentUpon>Styles.less</DependentUpon>
-    </Content>
-    <Content Remove="compilerconfig.json" />
-    <None Include="wwwroot\**\*.less" />
-    <None Include="compilerconfig.json" />
+    <PackageReference Include="Skybrud.Essentials.Umbraco" Version="17.0.0-alpha008" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[17.1.0,17.999)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[17.1.0,17.999)" NoWarn="NU1902" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->

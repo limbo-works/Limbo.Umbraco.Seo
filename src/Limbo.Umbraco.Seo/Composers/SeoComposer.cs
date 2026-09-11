@@ -6,6 +6,7 @@ using Limbo.Umbraco.Seo.Sitemaps.Services;
 using Limbo.Umbraco.Seo.Sites;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Skybrud.Essentials.Umbraco.Composing;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Web.Common.ApplicationBuilder;
@@ -19,12 +20,12 @@ public class SeoComposer : IComposer {
 
     public void Compose(IUmbracoBuilder builder) {
 
+        builder.AddPackageManifestReader<SeoPackageManifestReader>();
+
         builder.Services.AddUnique<ISiteAccessor, SiteAccessor>();
         builder.Services.AddUnique<IRobotsTxtService, RobotsTxtService>();
         builder.Services.AddUnique<ISecurityTxtService, SecurityTxtService>();
         builder.Services.AddUnique<ISitemapService, SitemapService>();
-
-        builder.ManifestFilters().Append<SeoManifestFilter>();
 
         builder.Services.Configure<UmbracoPipelineOptions>(options => {
             options.AddFilter(new UmbracoPipelineFilter("LimboSeo", prePipeline: applicationBuilder => {

@@ -61,6 +61,9 @@ public static class PublishedContentExtensions {
 
         result = 0;
 
+        // [CHANGE: the Umbraco 17 editor submits a JSON number, so a "Decimal" property may surface as
+        // decimal/double - without these cases the sitemap silently drops every <priority> element]
+        // Related: Editors/Sitemaps/SitemapPriorityValueConverter.cs, Sites/SiteAccessor.cs
         switch (content?.Value(SitemapConstants.Properties.Priority)) {
 
             case null:
@@ -68,6 +71,14 @@ public static class PublishedContentExtensions {
 
             case float f:
                 result = f;
+                return true;
+
+            case double d:
+                result = (float) d;
+                return true;
+
+            case decimal m:
+                result = (float) m;
                 return true;
 
             case string str:
@@ -97,6 +108,14 @@ public static class PublishedContentExtensions {
 
             case float f:
                 result = f;
+                return true;
+
+            case double d:
+                result = (float) d;
+                return true;
+
+            case decimal m:
+                result = (float) m;
                 return true;
 
             case string str:

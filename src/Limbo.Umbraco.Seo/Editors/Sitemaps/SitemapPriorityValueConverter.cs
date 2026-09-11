@@ -3,14 +3,12 @@ using System.Globalization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 
-#pragma warning disable CS1591
-
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
 
 public class SitemapPriorityValueConverter : PropertyValueConverterBase {
 
     public override bool IsConverter(IPublishedPropertyType propertyType) {
-        return propertyType.EditorAlias == SitemapPriorityEditor.EditorAlias;
+        return propertyType.EditorAlias == SitemapPriorityPropertyEditor.EditorAlias;
     }
 
     public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
@@ -23,7 +21,9 @@ public class SitemapPriorityValueConverter : PropertyValueConverterBase {
 
     public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
         return source switch {
-            float _ => source,
+            float f => f,
+            double d => (float) d,
+            decimal m => (float) m,
             string str => float.TryParse(str, CultureInfo.InvariantCulture, out float result) ? result : null,
             _ => null
         };
