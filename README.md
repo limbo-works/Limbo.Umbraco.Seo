@@ -20,12 +20,7 @@
 
 **Other**  
 
-- Logic for easily building sitemaps - extendable via the `ISitemapHelper` interface and the `SitemapHelper` class
-
-
-
-
-
+- Logic for easily building sitemaps - extendable via the `ISitemapHelper` interface and the `SitemapService` class
 
 
 
@@ -42,19 +37,17 @@
 
 ### Umbraco 17
 
-The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/17.0.0-alpha000), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
+The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/17.0.0-alpha001), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha000
+dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha001
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha000
+Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha001
 ```
-
-Since this is a prerelease, an explicit version (or `--prerelease`) is required — NuGet won't resolve it otherwise.
 
 ### Other versions of Umbraco
 

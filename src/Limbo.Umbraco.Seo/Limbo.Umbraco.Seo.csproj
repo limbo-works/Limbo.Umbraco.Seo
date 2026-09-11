@@ -10,11 +10,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>17.0.0-alpha000</VersionPrefix>
+    <VersionPrefix>17.0.0-alpha001</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
-    <Title>Limbo SEO</Title>
+    <Product>Limbo SEO</Product>
+    <Title>$(Product)</Title>
     <Description>SEO package for Umbraco 17.</Description>
     <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
   </PropertyGroup>
