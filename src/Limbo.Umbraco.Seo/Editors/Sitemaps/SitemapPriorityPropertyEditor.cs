@@ -1,12 +1,9 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-#pragma warning disable CS1591
-
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
 
-// [CHANGE: Umbraco 17 upgrade - property editor schema/UI split] Related: Editors/PreviewEditor.cs, Editors/Sitemaps/SitemapFrequencyEditor.cs, Client/src/manifests.ts
 [DataEditor(EditorAlias, ValueType = ValueTypes.Decimal)]
-public class SitemapPriorityEditor : DataEditor {
+public class SitemapPriorityPropertyEditor : DataEditor {
 
     #region Constants
 
@@ -23,14 +20,14 @@ public class SitemapPriorityEditor : DataEditor {
     /// <summary>
     /// Gets the alias of the client side property editor UI of this editor.
     /// </summary>
-    /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewEditor.EditorUiAlias"/>.</remarks>
+    /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewPropertyEditor.EditorUiAlias"/>.</remarks>
     public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapPriority";
 
     #endregion
 
     #region Constructors
 
-    public SitemapPriorityEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
+    public SitemapPriorityPropertyEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
 
     #endregion
 

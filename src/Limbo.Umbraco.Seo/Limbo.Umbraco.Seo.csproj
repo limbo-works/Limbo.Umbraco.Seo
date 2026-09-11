@@ -6,18 +6,12 @@
     <TargetFramework>net10.0</TargetFramework>
     <StaticWebAssetBasePath>App_Plugins/$(AssemblyName)</StaticWebAssetBasePath>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>17.0.0</VersionPrefix>
+    <VersionPrefix>17.0.0-alpha000</VersionPrefix>
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
-    <!--
-      Release builds ship as a prerelease: "17.0.0-alpha000". Drop this line (or bump the suffix)
-      when the Umbraco 17 version is ready to go out as a stable release.
-      [CHANGE: release packages are published as prereleases] Related: release.bat, README.md, documentation/umbraco-17-upgrade.md
-    -->
-    <VersionSuffix Condition="'$(Configuration)'=='Release'">alpha000</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Title>Limbo SEO</Title>
@@ -37,32 +31,25 @@
 
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
+    <AssemblyMetadata Include="Authors" Value="$(Authors)" />
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/" />
     <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.seo/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.Seo" />
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.seo" />
   </ItemGroup>
 
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.68" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.69" />
     <PackageReference Include="Skybrud.Essentials.AspNetCore" Version="1.0.2" />
-    <!-- [CHANGE: "17.9.9" excluded Umbraco 17.10 and up - "17.999" covers every 17.x minor, as "13.999" did for v13] Related: release.bat, debug.bat, documentation/umbraco-17-upgrade.md -->
-    <PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.999)" NoWarn="NU1902" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[17.0.0,17.999)" NoWarn="NU1902" />
-  </ItemGroup>
-
-  <!--
-    The backoffice client is a Vite/TypeScript project under "Client". Its build output is written to
-    "wwwroot", which the Razor SDK exposes as static web assets under "App_Plugins/Limbo.Umbraco.Seo".
-    Everything below "Client" is excluded so that node_modules and TypeScript sources never end up in
-    the NuGet package.
-  -->
-  <ItemGroup>
-    <Content Remove="Client\**" />
-    <None Remove="Client\**" />
-    <Compile Remove="Client\**" />
-    <EmbeddedResource Remove="Client\**" />
+    <PackageReference Include="Skybrud.Essentials.Umbraco" Version="17.0.0-alpha008" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[17.1.0,17.999)" NoWarn="NU1902" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[17.1.0,17.999)" NoWarn="NU1902" />
   </ItemGroup>
 
   <!-- Include package icon for NuGet -->

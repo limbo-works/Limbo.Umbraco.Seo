@@ -1,6 +1,6 @@
 # Limbo SEO
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v13/main/LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v17/main/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
@@ -21,7 +21,7 @@
 **Other**  
 
 - Logic for easily building sitemaps - extendable via the `ISitemapHelper` interface and the `SitemapHelper` class
-- More to come 😎
+
 
 
 
@@ -92,6 +92,8 @@ The package registers a middleware that serves three files for the site matching
 
 Under the hood these are handled by the `ISitemapService`, `IRobotsTxtService` and `ISecurityTxtService` interfaces. The default implementations are `SitemapService`, `RobotsTxtService` and `SecurityTxtService`, and each can be replaced through dependency injection. `SitemapService` in particular exposes virtual `IgnoreNode`, `IgnoreChildren` and `CreateItem` methods, so subclassing it is usually enough to customise which pages end up in the sitemap.
 
+
+
 <br /><br />
 
 ## Development
@@ -100,12 +102,4 @@ The C# project builds on its own:
 
 ```
 dotnet build src/Limbo.Umbraco.Seo
-```
-
-The backoffice extensions are a Vite/TypeScript project under `src/Limbo.Umbraco.Seo/Client`. Its build output is written to `src/Limbo.Umbraco.Seo/wwwroot` and is committed to the repository, so you only need to rebuild it after changing anything under `Client/src`:
-
-```
-cd src/Limbo.Umbraco.Seo/Client
-npm ci
-npm run build
 ```

@@ -7,7 +7,6 @@ using Skybrud.Essentials.AspNetCore;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Routing;
 using Umbraco.Cms.Core.Web;
-using Umbraco.Extensions;
 
 namespace Limbo.Umbraco.Seo.Sites;
 
@@ -60,14 +59,14 @@ public class SiteAccessor : ISiteAccessor {
 
         // Get a list of all domains from the published domain cache. Unlike "IDomainService", this
         // doesn't hit the database on each request, and it is the supported API from Umbraco 14.
-        IReadOnlyList<Domain> domains = umbracoContext.Domains?.GetAll(false).ToArray() ?? [];
+        IReadOnlyList<Domain> domains = umbracoContext.Domains.GetAll(false).ToArray();
 
         // Get the first matching domain (or null if no matches were found)
         Domain? domain = domains.FirstOrDefault(d => IsMatch(url, d));
         if (domain is null) return false;
 
         // Get the root node of the matched domain
-        IPublishedContent? content = umbracoContext.Content?.GetById(domain.ContentId);
+        IPublishedContent? content = umbracoContext.Content.GetById(domain.ContentId);
         if (content is null) return false;
 
         // Return whether a domain was found

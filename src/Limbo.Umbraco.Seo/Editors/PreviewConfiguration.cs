@@ -3,11 +3,8 @@ using Umbraco.Cms.Core.PropertyEditors;
 namespace Limbo.Umbraco.Seo.Editors;
 
 /// <summary>
-/// Class representing the configuration of <see cref="PreviewEditor"/>.
+/// Class representing the configuration of <see cref="PreviewPropertyEditor"/>.
 /// </summary>
-/// <remarks>From Umbraco 14 and onwards, the label, description and editor of each configuration
-/// field are declared in the <c>propertyEditorSchema</c> manifest rather than in C#. The aliases
-/// below must stay in sync with <c>settings.properties</c> in <c>Client/src/manifests.ts</c>.</remarks>
 public class PreviewConfiguration {
 
     /// <summary>
@@ -23,9 +20,9 @@ public class PreviewConfiguration {
     public string? DescriptionProperties { get; set; }
 
     /// <summary>
-    /// Gets or sets whether asteriscs in the title properties should be removed.
+    /// Gets or sets whether asterisks in the title properties should be removed.
     /// </summary>
-    [ConfigurationField("removeAsteriscs")]
-    public bool RemoveAsteriscs { get; set; }
+    [ConfigurationField("removeAsterisks")]
+    public bool RemoveAsterisks { get; set; }
 
 }

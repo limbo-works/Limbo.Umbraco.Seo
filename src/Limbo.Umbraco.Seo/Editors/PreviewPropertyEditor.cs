@@ -1,15 +1,10 @@
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
 
-#pragma warning disable CS1591
-
 namespace Limbo.Umbraco.Seo.Editors;
 
-// [CHANGE: Umbraco 17 upgrade - property editor schema/UI split] Related: Editors/Sitemaps/SitemapFrequencyEditor.cs, Editors/Sitemaps/SitemapPriorityEditor.cs, Composers/SeoComposer.cs, Client/src/manifests.ts
-// The name, icon, group and view of the editor are no longer declared here. From Umbraco 14 and
-// onwards they belong to the "propertyEditorUi" manifest in "Client/src/manifests.ts".
 [DataEditor(EditorAlias, ValueType = ValueTypes.String)]
-public class PreviewEditor : DataEditor {
+public class PreviewPropertyEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
 
@@ -39,7 +34,7 @@ public class PreviewEditor : DataEditor {
 
     #region Constructors
 
-    public PreviewEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
+    public PreviewPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
         _ioHelper = ioHelper;
     }
 

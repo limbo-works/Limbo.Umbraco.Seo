@@ -28,9 +28,9 @@ public class UpdatePropertyEditorUiAliases : AsyncMigrationBase {
     /// The editor aliases of this package, mapped to the UI alias each one should now use.
     /// </summary>
     private static readonly Dictionary<string, string> _uiAliases = new() {
-        { PreviewEditor.EditorAlias, PreviewEditor.EditorUiAlias },
-        { SitemapFrequencyEditor.EditorAlias, SitemapFrequencyEditor.EditorUiAlias },
-        { SitemapPriorityEditor.EditorAlias, SitemapPriorityEditor.EditorUiAlias }
+        { PreviewPropertyEditor.EditorAlias, PreviewPropertyEditor.EditorUiAlias },
+        { SitemapFrequencyPropertyEditor.EditorAlias, SitemapFrequencyPropertyEditor.EditorUiAlias },
+        { SitemapPriorityPropertyEditor.EditorAlias, SitemapPriorityPropertyEditor.EditorUiAlias }
     };
 
     public UpdatePropertyEditorUiAliases(IMigrationContext context) : base(context) { }

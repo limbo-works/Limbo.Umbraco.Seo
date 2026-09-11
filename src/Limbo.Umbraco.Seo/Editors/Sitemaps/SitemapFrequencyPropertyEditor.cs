@@ -1,12 +1,9 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-#pragma warning disable CS1591
-
 namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
 
-// [CHANGE: Umbraco 17 upgrade - property editor schema/UI split] Related: Editors/PreviewEditor.cs, Editors/Sitemaps/SitemapPriorityEditor.cs, Client/src/manifests.ts
 [DataEditor(EditorAlias, ValueType = ValueTypes.String)]
-public class SitemapFrequencyEditor : DataEditor {
+public class SitemapFrequencyPropertyEditor : DataEditor {
 
     #region Constants
 
@@ -23,7 +20,7 @@ public class SitemapFrequencyEditor : DataEditor {
     /// <summary>
     /// Gets the alias of the client side property editor UI of this editor.
     /// </summary>
-    /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewEditor.EditorUiAlias"/>.</remarks>
+    /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewPropertyEditor.EditorUiAlias"/>.</remarks>
     public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapChangeFrequency";
 
     #endregion
@@ -33,7 +30,7 @@ public class SitemapFrequencyEditor : DataEditor {
     // NOTE: As in previous versions of this package, no configuration editor is wired up here.
     // "SitemapFrequencyConfiguration.UseNullable" isn't honoured by SitemapFrequencyValueConverter,
     // so exposing it on the data type would only offer editors a setting that does nothing.
-    public SitemapFrequencyEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
+    public SitemapFrequencyPropertyEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
 
     #endregion
 

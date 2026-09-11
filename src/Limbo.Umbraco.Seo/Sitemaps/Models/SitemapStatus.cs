@@ -6,8 +6,13 @@ namespace Limbo.Umbraco.Seo.Sitemaps.Models;
 /// Enum class indicating the status of a sitemap build operation.
 /// </summary>
 public enum SitemapBuildStatus {
+
     Success,
+
     Unauthorized,
+
     NotFound,
+
     Error
+
 }
