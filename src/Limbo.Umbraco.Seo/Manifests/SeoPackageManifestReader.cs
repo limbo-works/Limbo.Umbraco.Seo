@@ -48,7 +48,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Meta = new LocalizationMeta {
                 Culture = "en",
                 Localizations = new LocalizationDictionary {
-                    ["limboSeo"] = new Dictionary<string, string> {
+                    ["limboSeo"] = new LocalizationSection {
                         ["frequency_unspecified"] = "Unspecified",
                         ["frequency_always"] = "Always",
                         ["frequency_hourly"] = "Hourly",
@@ -68,7 +68,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Meta = new LocalizationMeta {
                 Culture = "da",
                 Localizations = new LocalizationDictionary {
-                    ["limboSeo"] = new Dictionary<string, string> {
+                    ["limboSeo"] = new LocalizationSection {
                         ["frequency_unspecified"] = "Ikke angivet",
                         ["frequency_always"] = "Altid",
                         ["frequency_hourly"] = "Timevis",
