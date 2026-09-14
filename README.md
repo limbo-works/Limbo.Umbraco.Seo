@@ -37,16 +37,16 @@
 
 ### Umbraco 17
 
-The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo/17.0.0-alpha001), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
+The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha001
+dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha002
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha001
+Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha002
 ```
 
 ### Other versions of Umbraco
