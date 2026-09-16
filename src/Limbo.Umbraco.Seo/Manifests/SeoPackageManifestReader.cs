@@ -128,7 +128,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Meta = new PropertyEditorUiMeta {
                 Label = PreviewPropertyEditor.EditorName,
                 Icon = PreviewPropertyEditor.EditorIcon,
-                Group = "Limbo",
+                Group = PreviewPropertyEditor.EditorGroup,
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.Preview
             }
         };
@@ -152,7 +152,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Meta = new PropertyEditorUiMeta {
                 Label = SitemapChangeFrequencyPropertyEditor.EditorName,
                 Icon = SitemapChangeFrequencyPropertyEditor.EditorIcon,
-                Group = "Limbo",
+                Group = SitemapChangeFrequencyPropertyEditor.EditorGroup,
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.SitemapChangeFrequency
             }
         };
@@ -176,7 +176,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Meta = new PropertyEditorUiMeta {
                 Label = SitemapPriorityPropertyEditor.EditorName,
                 Icon = SitemapPriorityPropertyEditor.EditorIcon,
-                Group = "Limbo",
+                Group = SitemapPriorityPropertyEditor.EditorGroup,
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.SitemapPriority
             }
         };

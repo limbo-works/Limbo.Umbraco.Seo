@@ -35,6 +35,8 @@ public class PreviewPropertyEditor : DataEditor {
     /// </summary>
     public const string EditorIcon = "icon-chart";
 
+    public const string EditorGroup = "Limbo";
+
     /// <summary>
     /// Gets the value type of the editor.
     /// </summary>

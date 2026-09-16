@@ -28,6 +28,8 @@ public class SitemapPriorityPropertyEditor : DataEditor {
     /// </summary>
     public const string EditorIcon = "icon-timer";
 
+    public const string EditorGroup = "Limbo";
+
     /// <summary>
     /// Gets the value type of the editor.
     /// </summary>
