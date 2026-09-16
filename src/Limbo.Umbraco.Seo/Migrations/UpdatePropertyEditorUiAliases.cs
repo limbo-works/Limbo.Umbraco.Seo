@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Limbo.Umbraco.Seo.Editors;
-using Limbo.Umbraco.Seo.Editors.Sitemaps;
+using Limbo.Umbraco.Seo.PropertyEditors;
 using Umbraco.Cms.Infrastructure.Migrations;
 
 #pragma warning disable CS1591
@@ -29,7 +28,7 @@ public class UpdatePropertyEditorUiAliases : AsyncMigrationBase {
     /// </summary>
     private static readonly Dictionary<string, string> _uiAliases = new() {
         { PreviewPropertyEditor.EditorAlias, PreviewPropertyEditor.EditorUiAlias },
-        { SitemapFrequencyPropertyEditor.EditorAlias, SitemapFrequencyPropertyEditor.EditorUiAlias },
+        { SitemapChangeFrequencyPropertyEditor.EditorAlias, SitemapChangeFrequencyPropertyEditor.EditorUiAlias },
         { SitemapPriorityPropertyEditor.EditorAlias, SitemapPriorityPropertyEditor.EditorUiAlias }
     };
 

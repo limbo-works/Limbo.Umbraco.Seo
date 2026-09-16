@@ -1,8 +1,8 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
-[DataEditor(EditorAlias, ValueType = ValueTypes.Decimal)]
+[DataEditor(EditorAlias, ValueType = EditorValueType)]
 public class SitemapPriorityPropertyEditor : DataEditor {
 
     #region Constants
@@ -22,6 +22,16 @@ public class SitemapPriorityPropertyEditor : DataEditor {
     /// </summary>
     /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewPropertyEditor.EditorUiAlias"/>.</remarks>
     public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapPriority";
+
+    /// <summary>
+    /// Gets the icon of the editor.
+    /// </summary>
+    public const string EditorIcon = "icon-timer";
+
+    /// <summary>
+    /// Gets the value type of the editor.
+    /// </summary>
+    public const string EditorValueType = ValueTypes.Decimal;
 
     #endregion
 

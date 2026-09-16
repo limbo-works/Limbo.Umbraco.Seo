@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Limbo.Umbraco.Seo.Constants;
+using Limbo.Umbraco.Seo.PropertyEditors;
 using Skybrud.Essentials.Umbraco.Constants;
 using Skybrud.Essentials.Umbraco.Manifests.Extensions;
 using Skybrud.Essentials.Umbraco.Manifests.Extensions.Localization;
@@ -125,8 +126,8 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Name = $"{Name}: Preview Property Editor UI",
             Element = $"/App_Plugins/{Alias}/Elements/Preview.js",
             Meta = new PropertyEditorUiMeta {
-                Label = "Limbo SEO Preview",
-                Icon = "icon-chart",
+                Label = PreviewPropertyEditor.EditorName,
+                Icon = PreviewPropertyEditor.EditorIcon,
                 Group = "Limbo",
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.Preview
             }
@@ -149,8 +150,8 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Name = $"{Name}: Sitemap Change Frequency Property Editor UI",
             Element = $"/App_Plugins/{Alias}/Elements/SitemapChangeFrequency.js",
             Meta = new PropertyEditorUiMeta {
-                Label = "Limbo Sitemap Change Frequency",
-                Icon = "icon-timer",
+                Label = SitemapChangeFrequencyPropertyEditor.EditorName,
+                Icon = SitemapChangeFrequencyPropertyEditor.EditorIcon,
                 Group = "Limbo",
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.SitemapChangeFrequency
             }
@@ -173,8 +174,8 @@ public class SeoPackageManifestReader : IPackageManifestReader {
             Name = $"{Name}: Sitemap Priority Property Editor UI",
             Element = $"/App_Plugins/{Alias}/Elements/SitemapPriority.js",
             Meta = new PropertyEditorUiMeta {
-                Label = "Limbo Sitemap Priority",
-                Icon = "icon-timer",
+                Label = SitemapPriorityPropertyEditor.EditorName,
+                Icon = SitemapPriorityPropertyEditor.EditorIcon,
                 Group = "Limbo",
                 PropertyEditorSchemaAlias = SeoPropertyEditorSchemaAliases.SitemapPriority
             }

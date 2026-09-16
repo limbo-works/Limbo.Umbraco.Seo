@@ -1,11 +1,11 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
 /// <summary>
-/// Class representing the configuration of <see cref="SitemapFrequencyPropertyEditor"/>.
+/// Class representing the configuration of <see cref="SitemapChangeFrequencyPropertyEditor"/>.
 /// </summary>
-public class SitemapFrequencyConfiguration {
+public class SitemapChangeFrequencyConfiguration {
 
     /// <summary>
     /// Gets or sets whether the returned property value should be <see langword="null"/> if no value has been saved.

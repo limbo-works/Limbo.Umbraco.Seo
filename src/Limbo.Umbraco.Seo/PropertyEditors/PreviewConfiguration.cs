@@ -1,6 +1,6 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
 /// <summary>
 /// Class representing the configuration of <see cref="PreviewPropertyEditor"/>.

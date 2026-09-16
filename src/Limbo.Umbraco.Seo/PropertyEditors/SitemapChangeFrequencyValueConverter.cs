@@ -6,12 +6,12 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 #pragma warning disable CS1591
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
-public class SitemapFrequencyValueConverter : PropertyValueConverterBase {
+public class SitemapChangeFrequencyValueConverter : PropertyValueConverterBase {
 
     public override bool IsConverter(IPublishedPropertyType propertyType) {
-        return propertyType.EditorAlias == SitemapFrequencyPropertyEditor.EditorAlias;
+        return propertyType.EditorAlias == SitemapChangeFrequencyPropertyEditor.EditorAlias;
     }
 
     public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {

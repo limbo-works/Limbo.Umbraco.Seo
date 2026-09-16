@@ -3,7 +3,7 @@ using System.Globalization;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
 public class SitemapPriorityValueConverter : PropertyValueConverterBase {
 

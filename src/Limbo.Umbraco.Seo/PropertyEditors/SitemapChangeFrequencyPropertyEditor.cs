@@ -1,9 +1,9 @@
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors.Sitemaps;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
-[DataEditor(EditorAlias, ValueType = ValueTypes.String)]
-public class SitemapFrequencyPropertyEditor : DataEditor {
+[DataEditor(EditorAlias, ValueType = EditorValueType)]
+public class SitemapChangeFrequencyPropertyEditor : DataEditor {
 
     #region Constants
 
@@ -23,6 +23,16 @@ public class SitemapFrequencyPropertyEditor : DataEditor {
     /// <remarks>Must differ from <see cref="EditorAlias"/> - see <see cref="PreviewPropertyEditor.EditorUiAlias"/>.</remarks>
     public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.SitemapChangeFrequency";
 
+    /// <summary>
+    /// Gets the icon of the editor.
+    /// </summary>
+    public const string EditorIcon = "icon-timer";
+
+    /// <summary>
+    /// Gets the value type of the editor.
+    /// </summary>
+    public const string EditorValueType = ValueTypes.String;
+
     #endregion
 
     #region Constructors
@@ -30,7 +40,7 @@ public class SitemapFrequencyPropertyEditor : DataEditor {
     // NOTE: As in previous versions of this package, no configuration editor is wired up here.
     // "SitemapFrequencyConfiguration.UseNullable" isn't honoured by SitemapFrequencyValueConverter,
     // so exposing it on the data type would only offer editors a setting that does nothing.
-    public SitemapFrequencyPropertyEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
+    public SitemapChangeFrequencyPropertyEditor(IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) { }
 
     #endregion
 

@@ -1,9 +1,9 @@
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Limbo.Umbraco.Seo.Editors;
+namespace Limbo.Umbraco.Seo.PropertyEditors;
 
-[DataEditor(EditorAlias, ValueType = ValueTypes.String)]
+[DataEditor(EditorAlias, ValueType = EditorValueType)]
 public class PreviewPropertyEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
@@ -29,6 +29,16 @@ public class PreviewPropertyEditor : DataEditor {
     /// are pointed at this alias by
     /// <see cref="Migrations.UpdatePropertyEditorUiAliases"/>.</remarks>
     public const string EditorUiAlias = "Limbo.Umbraco.Seo.PropertyEditorUi.Preview";
+
+    /// <summary>
+    /// Gets the icon of the editor.
+    /// </summary>
+    public const string EditorIcon = "icon-chart";
+
+    /// <summary>
+    /// Gets the value type of the editor.
+    /// </summary>
+    public const string EditorValueType = ValueTypes.String;
 
     #endregion
 
