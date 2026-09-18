@@ -3,7 +3,6 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.Seo/blob/v17/main/LICENSE.md)
 [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
 [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.Seo.svg)](https://www.nuget.org/packages/Limbo.Umbraco.Seo)
-[![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/developer-tools/limbo-seo/)
 [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.seo)
 [![Limbo.Umbraco.Seo at packages.limbo.works](https://img.shields.io/badge/limbo-packages-blue)](https://packages.limbo.works/limbo.umbraco.seo/)
 
@@ -40,13 +39,13 @@
 The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.Seo), and is currently released as a **prerelease**. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha002
+dotnet add package Limbo.Umbraco.Seo --version 17.0.0-alpha003
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha002
+Install-Package Limbo.Umbraco.Seo -Version 17.0.0-alpha003
 ```
 
 ### Other versions of Umbraco
