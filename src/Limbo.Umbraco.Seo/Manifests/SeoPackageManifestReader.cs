@@ -101,7 +101,7 @@ public class SeoPackageManifestReader : IPackageManifestReader {
                             PropertyEditorUiAlias = UmbracoPropertyEditorUiAliases.TextBox
                         },
                         new PropertyEditorSettingsProperty {
-                            Alias = "title",
+                            Alias = "description",
                             Label = "Description properties",
                             Description = "Specify a comma separated list of properties that should be used for determining the page's SEO description.",
                             PropertyEditorUiAlias = UmbracoPropertyEditorUiAliases.TextBox
