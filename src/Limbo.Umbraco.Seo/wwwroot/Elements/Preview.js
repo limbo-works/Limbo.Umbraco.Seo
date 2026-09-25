@@ -56,20 +56,15 @@ export default class LimboSeoPreviewElement extends UmbLitElement {
 
     constructor() {
         super();
-
         this.consumeContext(UMB_PROPERTY_DATASET_CONTEXT, (context) => {
             this.#datasetContext = context ?? undefined;
             this.#forgetProperties();
-
             if (!this.#datasetContext) return;
-
             this.observe(
-                this.#datasetContext.name,
-                (name) => {
+                this.#datasetContext.name, (name) => {
                     this._name = name ?? "";
                     this.#update();
-                },
-                "_limboSeoName"
+                }, "_limboSeoName"
             );
 
             this.#observeProperties();
@@ -103,12 +98,10 @@ export default class LimboSeoPreviewElement extends UmbLitElement {
             this.#observedAliases.add(alias);
 
             this.observe(
-                observable,
-                (value) => {
+                observable, (value) => {
                     this.#values.set(alias, typeof value === "string" ? value : "");
                     this.#update();
-                },
-                `_limboSeoProperty_${alias}`
+                }, `_limboSeoProperty_${alias}`
             );
         }
     }
@@ -143,6 +136,9 @@ export default class LimboSeoPreviewElement extends UmbLitElement {
 
         this._title = title;
         this._description = this.#first(this.#descriptionAliases);
+
+        this.requestUpdate();
+
     }
 
     #truncate(value, maxLength) {
