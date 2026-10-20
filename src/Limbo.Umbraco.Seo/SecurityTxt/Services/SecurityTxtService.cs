@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using Limbo.Umbraco.Seo.Constants;
 using Limbo.Umbraco.Seo.SecurityTxt.Models;
 using Limbo.Umbraco.Seo.Sites;
@@ -38,11 +39,14 @@ public class SecurityTxtService : ISecurityTxtService {
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
     public virtual ISecurityTxtResult GetSecurityTxt(ISite site) {
 
-        // Get the robots value
-        string robots = site.Content.Value<string>(SeoProperties.RobotsTxt) ?? string.Empty;
+        // Get the security.txt value
+        string value = site.Content.Value<string>(SeoProperties.SecurityTxt)?.Trim() ?? string.Empty;
+
+        // Add a new line at the end of the value to ensure that the last line is properly terminated
+        value += Environment.NewLine;
 
         // Return the result
-        return new SecurityTxtResult(robots);
+        return new SecurityTxtResult(value);
 
     }
 
