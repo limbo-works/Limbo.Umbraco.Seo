@@ -46,6 +46,7 @@ public class SeoMiddleware {
                 return;
 
             case SeoUrls.SecurityTxt:
+            case SeoUrls.WellKnown.SecurityTxt:
                 await HandleSecurityTxt(context);
                 return;
 
@@ -135,7 +136,7 @@ public class SeoMiddleware {
     protected virtual async Task WritePlain(HttpContext context, HttpStatusCode statusCode, string? value) {
 
         context.Response.StatusCode = (int) statusCode;
-        context.Response.ContentType = "text/plain";
+        context.Response.ContentType = "text/plain; charset=utf-8";
         await context.Response.WriteAsync(value ?? string.Empty);
 
     }

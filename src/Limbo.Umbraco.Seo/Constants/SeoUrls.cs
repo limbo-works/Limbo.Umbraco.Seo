@@ -1,4 +1,6 @@
-﻿#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+﻿// ReSharper disable MemberHidesStaticFromOuterClass
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Limbo.Umbraco.Seo.Constants;
 
@@ -12,5 +14,11 @@ public static class SeoUrls {
     public const string SecurityTxt = "/security.txt";
 
     public const string Sitemap = "/sitemap.xml";
+
+    public static class WellKnown {
+
+        public const string SecurityTxt = "/.well-known/security.txt";
+
+    }
 
 }
