@@ -21,7 +21,7 @@ namespace Limbo.Umbraco.Seo.Middleware;
 #pragma warning disable CS1591
 
 /// <summary>
-/// Middleware used for exposing <c>/security.txt</c> files.
+/// Middleware used for exposing <c>/robots.txt</c>, <c>/security.txt</c> and <c>/sitemap.xml</c> files.
 /// </summary>
 public class SeoMiddleware {
 
@@ -69,7 +69,7 @@ public class SeoMiddleware {
         // Generate a new robots result
         IRobotsTxtResult result = context.RequestServices.GetRequiredService<IRobotsTxtService>().GetRobotsTxt(context);
 
-        // Write to the log if building the security value failed
+        // Write to the log if building the robots value failed
         if (result.Exception is not null) {
             _logger.LogError(result.Exception, "Failed generating robots.txt for {Domain}.", context.Request.Host);
         }

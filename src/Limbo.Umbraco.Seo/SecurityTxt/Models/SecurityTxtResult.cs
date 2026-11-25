@@ -4,7 +4,7 @@ using System.Net;
 namespace Limbo.Umbraco.Seo.SecurityTxt.Models;
 
 /// <summary>
-/// Class describing a security result.
+/// Class describing a <c>security.txt</c> result.
 /// </summary>
 public class SecurityTxtResult : ISecurityTxtResult {
 

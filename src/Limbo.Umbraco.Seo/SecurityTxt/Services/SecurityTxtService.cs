@@ -23,7 +23,7 @@ public class SecurityTxtService : ISecurityTxtService {
     }
 
     /// <summary>
-    /// Returns the <c>robots.txt</c> for the specified HTTP <paramref name="context"/>.
+    /// Returns the <c>security.txt</c> for the specified HTTP <paramref name="context"/>.
     /// </summary>
     /// <param name="context">The HTTP context.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
@@ -32,17 +32,17 @@ public class SecurityTxtService : ISecurityTxtService {
     }
 
     /// <summary>
-    /// Returns the <c>robots.txt</c> for the specified <paramref name="site"/>.
+    /// Returns the <c>security.txt</c> for the specified <paramref name="site"/>.
     /// </summary>
     /// <param name="site">The site.</param>
     /// <returns>An instance of <see cref="ISecurityTxtResult"/>.</returns>
     public virtual ISecurityTxtResult GetSecurityTxt(ISite site) {
 
-        // Get the robots value
-        string robots = site.Content.Value<string>(SeoProperties.RobotsTxt) ?? string.Empty;
+        // Get the security.txt value
+        string security = site.Content.Value<string>(SeoProperties.SecurityTxt) ?? string.Empty;
 
         // Return the result
-        return new SecurityTxtResult(robots);
+        return new SecurityTxtResult(security);
 
     }
 

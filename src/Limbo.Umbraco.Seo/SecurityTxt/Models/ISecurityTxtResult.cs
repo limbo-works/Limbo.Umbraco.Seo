@@ -19,7 +19,7 @@ public interface ISecurityTxtResult {
     bool Success { get; }
 
     /// <summary>
-    /// Gets an instance of <see cref="Exception"/> if building the robots value was unsuccessful.
+    /// Gets an instance of <see cref="Exception"/> if building the security value was unsuccessful.
     /// </summary>
     Exception? Exception { get; }
 
