@@ -80,7 +80,9 @@ The package registers a middleware that serves three files for the site matching
 |-----|--------|
 | `/sitemap.xml` | Built by walking the content tree below the site root |
 | `/robots.txt` | The `robotsTxt` property on the site root |
-| `/security.txt` | The `securityTxt` property on the site root |
+| `/.well-known/security.txt` | The `securityTxt` property on the site root |
+
+As required by [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116#section-3), `security.txt` is served from `/.well-known/security.txt`. Requests to the legacy `/security.txt` URL get a permanent (301) redirect there.
 
 Under the hood these are handled by the `ISitemapService`, `IRobotsTxtService` and `ISecurityTxtService` interfaces. The default implementations are `SitemapService`, `RobotsTxtService` and `SecurityTxtService`, and each can be replaced through dependency injection. `SitemapService` in particular exposes virtual `IgnoreNode`, `IgnoreChildren` and `CreateItem` methods, so subclassing it is usually enough to customise which pages end up in the sitemap.
 

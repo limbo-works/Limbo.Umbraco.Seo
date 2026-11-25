@@ -21,7 +21,8 @@ namespace Limbo.Umbraco.Seo.Middleware;
 #pragma warning disable CS1591
 
 /// <summary>
-/// Middleware used for exposing <c>/robots.txt</c>, <c>/security.txt</c> and <c>/sitemap.xml</c> files.
+/// Middleware used for exposing <c>/robots.txt</c>, <c>/.well-known/security.txt</c> and <c>/sitemap.xml</c> files.
+/// Requests to the legacy <c>/security.txt</c> URL are redirected to <c>/.well-known/security.txt</c>.
 /// </summary>
 public class SeoMiddleware {
 
@@ -47,6 +48,10 @@ public class SeoMiddleware {
 
             case SeoUrls.SecurityTxt:
                 await HandleSecurityTxt(context);
+                return;
+
+            case SeoUrls.SecurityTxtLegacy:
+                await HandleSecurityTxtRedirect(context);
                 return;
 
             case SeoUrls.Sitemap:
@@ -94,6 +99,15 @@ public class SeoMiddleware {
 
         // Write the result to the response
         await WritePlain(context, result.StatusCode, result.Value);
+
+    }
+
+    protected virtual Task HandleSecurityTxtRedirect(HttpContext context) {
+
+        // RFC 9116 places security.txt under /.well-known/, and allows the legacy top-level URL to redirect there
+        context.Response.Redirect($"{context.Request.PathBase}{SeoUrls.SecurityTxt}{context.Request.QueryString}", permanent: true);
+
+        return Task.CompletedTask;
 
     }
 

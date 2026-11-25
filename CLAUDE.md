@@ -29,7 +29,7 @@ Branches are versioned per Umbraco major. `v17/dev` targets Umbraco 17 / .NET 10
 
 Everything server-side is wired in `Composers/SeoComposer.cs`: it registers services with `AddUnique` (so consuming sites can replace any of them) and inserts `SeoMiddleware` into the Umbraco pre-pipeline.
 
-**Request flow:** `Middleware/SeoMiddleware.cs` intercepts `/robots.txt`, `/security.txt`, and `/sitemap.xml` (paths in `Constants/SeoUrls.cs`) before Umbraco routing, ensures an Umbraco context, delegates to the matching service, and writes the response itself. Everything else passes through.
+**Request flow:** `Middleware/SeoMiddleware.cs` intercepts `/robots.txt`, `/.well-known/security.txt`, and `/sitemap.xml` (paths in `Constants/SeoUrls.cs`) before Umbraco routing, ensures an Umbraco context, delegates to the matching service, and writes the response itself. The legacy `/security.txt` gets a 301 to `/.well-known/security.txt` (RFC 9116). Everything else passes through.
 
 **Site resolution:** `Sites/ISiteAccessor` maps an `HttpContext` to an `ISite` (the root content node for the request's domain) by matching against `IUmbracoContext.Domains`, the published domain cache — not `IDomainService`, which is obsolete and hits the database per request. All three services depend on it; robots/security values are read as properties off the site node using aliases in `Constants/SeoProperties.cs`.
 
